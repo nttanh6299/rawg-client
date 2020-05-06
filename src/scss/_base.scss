@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: var(--color-dark);
+  color: #fff;
+}
+
+.App {
+  padding: 0 4rem;
+}
+
+.header {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  flex: 0 0 10%;
+  font-size: 2.4rem;
+  letter-spacing: 0.4rem;
+  cursor: pointer;
+}
+
+.login {
+  font-size: 1.5rem;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.4rem;
+}
+
+.search-bar {
+  flex: 0 0 40%;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 10rem;
+  font-size: 1.5rem;
+  background-color: var(--color-grey-dark-1);
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background: #fff;
+  }
+
+  &:hover > &__button,
+  &:hover > &__input,
+  &:hover > &__input::-webkit-input-placeholder {
+    color: var(--color-dark);
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-grey-dark-3);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1.5rem;
+  }
+
+  &__icon {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: currentColor;
+  }
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-dark-3);
+    }
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar {
+  flex: 0 0 18%;
+}
+
+.nav {
+  margin-bottom: 3rem;
+
+  &__menu {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: var(--color-dark);
+    padding: 1rem 2rem;
+    background-color: var(--color-grey-dark-1);
+    color: var(--color-grey-dark-3);
+    margin: 1rem 1rem 0 0;
+    border-radius: 10rem;
+    transition: 0.2s;
+
+    &:hover {
+      background-color: #fff;
+      color: var(--color-dark);
+    }
+
+    &__link--active {
+      border-left: 3px solid #fff;
+    }
+  }
+}
