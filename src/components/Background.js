@@ -4,21 +4,24 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   backgroundImage: PropTypes.string.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  children: PropTypes.node
 };
 
 const defaultProps = {
   className: ''
 };
 
-const Background = ({ backgroundImage, className }) => {
+const Background = ({ backgroundImage, className, children }) => {
   const src = useLazyLoadingImage(backgroundImage);
 
   return (
     <div
-      className={`background ${src ? 'bg-loaded' : ''} ${className}`}
+      className={`background ${className}`}
       style={{ backgroundImage: `url('${src}')` }}
-    ></div>
+    >
+      {children}
+    </div>
   );
 };
 
