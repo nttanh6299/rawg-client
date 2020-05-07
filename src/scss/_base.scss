@@ -145,3 +145,69 @@ body {
     }
   }
 }
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  column-gap: 2rem;
+}
+
+.game {
+  border-radius: 1rem;
+  overflow: hidden;
+  color: #fff;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  & + & {
+    margin-top: 2rem;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--color-grey-dark-1);
+  }
+
+  &__name {
+    font-size: 2.2rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__meta {
+    font-size: 1.4rem;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    color: currentColor;
+    border: 1px solid currentColor;
+    border-radius: 0.4rem;
+  }
+}
+
+.background {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.-metacritic-red {
+  color: red;
+}
+
+.-metacritic-yellow {
+  color: yellow;
+}
+
+.-metacritic-blue {
+  color: blue;
+}
+
+.-metacritic-green {
+  color: green;
+}
