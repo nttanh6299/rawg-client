@@ -1,19 +1,22 @@
 import React from 'react';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { GENRES } from '../constants/GlobalConstants';
-//import { history } from '../utils/helpers';
 
 const CustomLink = ({ to, label, exact = true }) => {
   return (
     <Route
-      path={to}
+      path={'/games/:genre'}
       exact={exact}
       children={({ match }) => {
-        return (
-          <Link
-            className={`nav__link ${match ? 'nav__link--active' : ''}`}
-            to={'/games/' + to}
-          >
+        const isMatched =
+          match &&
+          match.params &&
+          match.params.genre &&
+          match.params.genre === to;
+        return isMatched ? (
+          <span className="nav__link nav__link--active">{label}</span>
+        ) : (
+          <Link className="nav__link" to={'/games/' + to}>
             {label}
           </Link>
         );
@@ -24,14 +27,7 @@ const CustomLink = ({ to, label, exact = true }) => {
 
 const HeaderGenres = props => {
   const renderGenres = genres => {
-    let result = [];
-    const length = genres.length ? genres.length : 0;
-    for (let i = 0; i < length; i++) {
-      const { id, name, slug } = genres[i];
-      result.push(<CustomLink key={id} to={slug} label={name} />);
-    }
-
-    return result;
+    return genres.map(genre => <CustomLink key={genre.key} {...genre} />);
   };
 
   return (

@@ -1,10 +1,17 @@
 import React from 'react';
+import { history } from '../utils/helpers';
 import { ReactComponent as SearchIcon } from '../images/SVG/search.svg';
 
 const Header = () => {
+  const handleClick = () => {
+    history.push('/');
+  };
+
   return (
     <header className="header">
-      <h1 className="logo">RAWGC</h1>
+      <h1 className="logo" onClick={handleClick}>
+        RAWGC
+      </h1>
       <form className="search-bar">
         <button className="search-bar__button">
           <SearchIcon className="search-bar__icon" />

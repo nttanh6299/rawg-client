@@ -33,6 +33,7 @@ const Video = ({ src }) => {
         src={src}
         loop
       />
+      <button className="video__full-frame">Full video</button>
     </div>
   );
 };

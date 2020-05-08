@@ -1,97 +1,97 @@
 export const GENRES = [
   {
-    id: 4,
-    name: 'Action',
-    slug: 'action'
+    key: 4,
+    label: 'Action',
+    to: 'action'
   },
   {
-    id: 51,
-    name: 'Indie',
-    slug: 'indie'
+    key: 51,
+    label: 'Indie',
+    to: 'indie'
   },
   {
-    id: 3,
-    name: 'Adventure',
-    slug: 'adventure'
+    key: 3,
+    label: 'Adventure',
+    to: 'adventure'
   },
   {
-    id: 5,
-    name: 'RPG',
-    slug: 'role-playing-games-rpg'
+    key: 5,
+    label: 'RPG',
+    to: 'role-playing-games-rpg'
   },
   {
-    id: 2,
-    name: 'Shooter',
-    slug: 'shooter'
+    key: 2,
+    label: 'Shooter',
+    to: 'shooter'
   },
   {
-    id: 10,
-    name: 'Strategy',
-    slug: 'strategy'
+    key: 10,
+    label: 'Strategy',
+    to: 'strategy'
   },
   {
-    id: 40,
-    name: 'Casual',
-    slug: 'casual'
+    key: 40,
+    label: 'Casual',
+    to: 'casual'
   },
   {
-    id: 14,
-    name: 'Simulation',
-    slug: 'simulation'
+    key: 14,
+    label: 'Simulation',
+    to: 'simulation'
   },
   {
-    id: 11,
-    name: 'Arcade',
-    slug: 'arcade'
+    key: 11,
+    label: 'Arcade',
+    to: 'arcade'
   },
   {
-    id: 7,
-    name: 'Puzzle',
-    slug: 'puzzle'
+    key: 7,
+    label: 'Puzzle',
+    to: 'puzzle'
   },
   {
-    id: 83,
-    name: 'Platformer',
-    slug: 'platformer'
+    key: 83,
+    label: 'Platformer',
+    to: 'platformer'
   },
   {
-    id: 1,
-    name: 'Racing',
-    slug: 'racing'
+    key: 1,
+    label: 'Racing',
+    to: 'racing'
   },
   {
-    id: 15,
-    name: 'Sports',
-    slug: 'sports'
+    key: 15,
+    label: 'Sports',
+    to: 'sports'
   },
   {
-    id: 19,
-    name: 'Family',
-    slug: 'family'
+    key: 19,
+    label: 'Family',
+    to: 'family'
   },
   {
-    id: 59,
-    name: 'Massively Multiplayer',
-    slug: 'massively-multiplayer'
+    key: 59,
+    label: 'Massively Multiplayer',
+    to: 'massively-multiplayer'
   },
   {
-    id: 6,
-    name: 'Fighting',
-    slug: 'fighting'
+    key: 6,
+    label: 'Fighting',
+    to: 'fighting'
   },
   {
-    id: 28,
-    name: 'Board Games',
-    slug: 'board-games'
+    key: 28,
+    label: 'Board Games',
+    to: 'board-games'
   },
   {
-    id: 34,
-    name: 'Educational',
-    slug: 'educational'
+    key: 34,
+    label: 'Educational',
+    to: 'educational'
   },
   {
-    id: 17,
-    name: 'Card',
-    slug: 'card'
+    key: 17,
+    label: 'Card',
+    to: 'card'
   }
 ];
