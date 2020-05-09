@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Header, HeaderGenres } from '../components';
+import { Header, HeaderGenres, Loading } from '../components';
 
 const PublicLayout = ({ children }) => {
   return (
@@ -7,7 +7,11 @@ const PublicLayout = ({ children }) => {
       <Header />
       <div className="main">
         <HeaderGenres />
-        <Suspense fallback={<div></div>}>{children}</Suspense>
+        <Suspense
+          fallback={<Loading loading={true} className="u-text-center" />}
+        >
+          {children}
+        </Suspense>
       </div>
     </div>
   );
