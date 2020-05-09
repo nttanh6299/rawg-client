@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Link, withRouter } from 'react-router-dom';
 import { GENRES } from '../constants/GlobalConstants';
+import { ReactComponent as DoubleArrowIcon } from '../images/SVG/double_arrow.svg';
 
 const CustomLink = ({ to, label, exact = true }) => {
   return (
@@ -25,14 +26,34 @@ const CustomLink = ({ to, label, exact = true }) => {
   );
 };
 
-const HeaderGenres = props => {
+const HeaderGenres = () => {
+  const [visible, setVisible] = useState(false);
+
+  const handleVisibleClick = () => {
+    setVisible(!visible);
+  };
+
   const renderGenres = genres => {
-    return genres.map(genre => <CustomLink key={genre.key} {...genre} />);
+    const result = [];
+    for (let i = 0; i < genres.length; i++) {
+      const genre = genres[i];
+      result.push(<CustomLink key={genre.key} {...genre} />);
+    }
+    return result;
   };
 
   return (
     <nav className="nav">
-      <div className="nav__menu">{renderGenres(GENRES)}</div>
+      <div className={`nav__menu ${visible ? 'nav__menu--visible' : ''}`}>
+        {renderGenres(GENRES)}
+        {/* <span onClick={handleVisibleClick} className="nav__toggle-menu">
+          <DoubleArrowIcon
+            className={`nav__icon ${
+              visible ? 'nav__icon--down' : 'nav__icon--up'
+            }`}
+          />
+        </span> */}
+      </div>
     </nav>
   );
 };

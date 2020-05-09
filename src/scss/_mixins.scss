@@ -1,0 +1,24 @@
+//responsivedesign
+@mixin mq($point) {
+  @if $point == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $point == laptop {
+    @media (max-width: 992px) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $point == phablet {
+    @media (max-width: 480px) {
+      @content;
+    }
+  } @else if $point == mobile {
+    @media (max-width: 320px) {
+      @content;
+    }
+  }
+}

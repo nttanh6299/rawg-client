@@ -1,6 +1,6 @@
-import React from 'react';
-import { useLazyLoadingImage } from '../hooks';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { elementInViewport } from '../utils/helpers';
 
 const propTypes = {
   backgroundImage: PropTypes.string.isRequired,
@@ -13,13 +13,27 @@ const defaultProps = {
 };
 
 const Background = ({ backgroundImage, className, children }) => {
-  const src = useLazyLoadingImage(backgroundImage);
+  const [loaded, setLoaded] = useState(false);
+  const bgRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!loaded && bgRef.current && elementInViewport(bgRef.current)) {
+        bgRef.current.style.backgroundImage = `url(${backgroundImage})`;
+        setLoaded(true);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [loaded, backgroundImage]);
 
   return (
-    <div
-      className={`background ${className}`}
-      style={{ backgroundImage: `url('${src}')` }}
-    >
+    <div ref={bgRef} className={`background ${className}`}>
       {children}
     </div>
   );
@@ -28,4 +42,4 @@ const Background = ({ backgroundImage, className, children }) => {
 Background.propTypes = propTypes;
 Background.defaultProps = defaultProps;
 
-export default Background;
+export default React.memo(Background);

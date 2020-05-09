@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
+import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 
 const propTypes = {
   src: PropTypes.string
@@ -33,7 +34,10 @@ const Video = ({ src }) => {
         src={src}
         loop
       />
-      <button className="video__full-frame">Full video</button>
+      <button className="video__full-frame">
+        <PlayIcon className="icon" />
+        <span>Full video</span>
+      </button>
     </div>
   );
 };

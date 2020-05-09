@@ -3,20 +3,22 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 };
 
 const defaultProps = {
-  className: ''
+  className: '',
+  style: {}
 };
 
-const Loading = ({ loading, className }) => {
+const Loading = ({ loading, className, style }) => {
   if (!loading) {
     return null;
   }
 
   return (
-    <div className={`loading ${className}`}>
+    <div className={`loading ${className}`} style={style}>
       <div className="lds-spinner">
         <div></div>
         <div></div>
@@ -38,4 +40,4 @@ const Loading = ({ loading, className }) => {
 Loading.propTypes = propTypes;
 Loading.defaultProps = defaultProps;
 
-export default Loading;
+export default React.memo(Loading);

@@ -7,8 +7,8 @@ import { setMetacriticColor } from '../utils/helpers';
 const propTypes = {
   name: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
-  background_image: PropTypes.string.isRequired,
-  metacritic: PropTypes.number.isRequired,
+  backgroundImage: PropTypes.string,
+  metacritic: PropTypes.number,
   clip: PropTypes.shape({
     clip: PropTypes.string,
     clips: PropTypes.object
@@ -21,7 +21,7 @@ const defaultProps = {
   }
 };
 
-const GameItem = ({ name, slug, background_image, metacritic, clip }) => {
+const GameItem = ({ name, slug, backgroundImage, metacritic, clip }) => {
   const [hover, setHover] = useState(false);
 
   const handleMouseEnter = e => {
@@ -40,10 +40,12 @@ const GameItem = ({ name, slug, background_image, metacritic, clip }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Background backgroundImage={background_image} />
+      <Background backgroundImage={backgroundImage} />
       {showVideo && <Video src={clip.clip} />}
       <div className="game__info">
-        <span className="game__name">{name}</span>
+        <span className="game__name" title={name}>
+          {name}
+        </span>
         <span className={`game__meta ${setMetacriticColor(metacritic)}`}>
           {metacritic}
         </span>
@@ -55,4 +57,4 @@ const GameItem = ({ name, slug, background_image, metacritic, clip }) => {
 GameItem.propTypes = propTypes;
 GameItem.defaultProps = defaultProps;
 
-export default GameItem;
+export default React.memo(GameItem);
