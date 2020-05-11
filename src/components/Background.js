@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { elementInViewport } from '../utils/helpers';
+import { elementInViewport, formatImageUrl } from '../utils/helpers';
 
 const propTypes = {
   backgroundImage: PropTypes.string.isRequired,
+  hasVideo: PropTypes.bool.isRequired,
   className: PropTypes.string,
   children: PropTypes.node
 };
@@ -12,14 +13,15 @@ const defaultProps = {
   className: ''
 };
 
-const Background = ({ backgroundImage, className, children }) => {
+const Background = ({ backgroundImage, hasVideo, className, children }) => {
   const [loaded, setLoaded] = useState(false);
   const bgRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
       if (!loaded && bgRef.current && elementInViewport(bgRef.current)) {
-        bgRef.current.style.backgroundImage = `url(${backgroundImage})`;
+        const bgUrl = formatImageUrl(backgroundImage, hasVideo);
+        bgRef.current.style.backgroundImage = `url(${bgUrl})`;
         setLoaded(true);
       }
     };
@@ -30,7 +32,7 @@ const Background = ({ backgroundImage, className, children }) => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [loaded, backgroundImage]);
+  }, [loaded, backgroundImage, hasVideo]);
 
   return (
     <div ref={bgRef} className={`background ${className}`}>
