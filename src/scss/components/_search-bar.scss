@@ -1,0 +1,71 @@
+.search-bar {
+  flex: 0 0 40%;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  border-radius: 10rem;
+  font-size: 1.5rem;
+  background-color: var(--color-grey-dark-1);
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background: #fff;
+  }
+
+  &:hover > &__button,
+  &:hover > &__input,
+  &:hover > &__input::-webkit-input-placeholder {
+    color: var(--color-dark);
+  }
+
+  @include mq($desktop) {
+    flex: 0 0 50%;
+  }
+
+  @include mq($laptop) {
+    flex: 0 0 60%;
+  }
+
+  @include mq($tablet) {
+    flex: 0 0 100%;
+    order: 2;
+    margin-right: 0;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-grey-dark-3);
+    background-color: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-left: 1.5rem;
+  }
+
+  &__icon {
+    height: 1.2rem;
+    width: 1.2rem;
+    fill: currentColor;
+  }
+
+  &__input {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    border: none;
+    padding: 1rem;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::-webkit-input-placeholder {
+      font-weight: 100;
+      color: var(--color-grey-dark-3);
+    }
+  }
+}

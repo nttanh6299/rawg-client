@@ -1,0 +1,33 @@
+.header {
+  height: $header-height;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @include mq($tablet) {
+    margin: 2rem 0;
+  }
+
+  &__logo {
+    flex: 0 0 10%;
+    margin-right: 4rem;
+    font-size: 2.4rem;
+    letter-spacing: 0.4rem;
+    cursor: pointer;
+
+    @include mq($tablet) {
+      margin-right: auto;
+    }
+  }
+
+  &__login {
+    font-size: 1.8rem;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0.4rem;
+  }
+}

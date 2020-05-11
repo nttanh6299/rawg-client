@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <header className="header">
-      <h1 className="logo" onClick={handleClick}>
+      <h1 className="header__logo" onClick={handleClick}>
         RAWGC
       </h1>
       <form className="search-bar">
@@ -22,7 +22,7 @@ const Header = () => {
           placeholder="Search for name"
         />
       </form>
-      <button className="login">Login</button>
+      <button className="header__login">Login</button>
     </header>
   );
 };

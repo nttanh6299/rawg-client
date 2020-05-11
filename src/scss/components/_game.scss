@@ -1,0 +1,39 @@
+.game {
+  border-radius: 1rem;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--color-grey-dark-1);
+  }
+
+  &__name {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__meta {
+    font-size: 1.4rem;
+    font-weight: 600;
+    display: inline-block;
+    padding: 0 0.8rem;
+    color: currentColor;
+    border: 1px solid currentColor;
+    border-radius: 0.4rem;
+  }
+}

@@ -19,7 +19,7 @@ const Games = ({ loading, games, fetchGames }) => {
   }, [fetchGames]);
 
   return (
-    <div className="games">
+    <div style={{ margin: '2rem 0 12rem 0' }}>
       <HeaderGenres />
       <GamesRendered games={games} />
       <Loading

@@ -1,0 +1,57 @@
+.video {
+  font-size: 1.7rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__frame {
+    height: 200px;
+    width: 100%;
+    object-fit: fill;
+  }
+
+  &__full-frame {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    border: 2px solid transparent;
+    outline: none;
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: border 0.2s;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      border: 2px solid rgba(255, 255, 255, 0.7);
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+
+    span {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
