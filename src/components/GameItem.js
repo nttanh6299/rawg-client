@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Background from './Background';
 import Video from './Video';
+import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 import { setMetacriticColor } from '../utils/helpers';
 
 const propTypes = {
@@ -32,7 +33,8 @@ const GameItem = ({ name, slug, backgroundImage, metacritic, clip }) => {
     setHover(false);
   };
 
-  const showVideo = hover && clip && clip.clip;
+  const hasVideo = !!clip && !!clip.clip;
+  const showVideo = hasVideo && hover;
 
   return (
     <div
@@ -40,7 +42,9 @@ const GameItem = ({ name, slug, backgroundImage, metacritic, clip }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Background backgroundImage={backgroundImage} />
+      <Background backgroundImage={backgroundImage} hasVideo={hasVideo}>
+        {hasVideo && <PlayIcon className="icon icon--play" />}
+      </Background>
       {showVideo && <Video src={clip.clip} />}
       <div className="game__info">
         <span className="game__name" title={name}>

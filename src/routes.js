@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { PublicLayout } from './layouts';
 
-const Games = lazy(() => import('./pages/Games'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+const Games = lazy(() => import('./containers/Games'));
+const NotFound = lazy(() => import('./containers/NotFound'));
 
 export const routes = [
   {

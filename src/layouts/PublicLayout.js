@@ -1,12 +1,11 @@
 import React, { Suspense } from 'react';
-import { Header, HeaderGenres, Loading } from '../components';
+import { Header, Loading } from '../components';
 
 const PublicLayout = ({ children }) => {
   return (
     <div>
       <Header />
       <div className="main">
-        <HeaderGenres />
         <Suspense
           fallback={<Loading loading={true} className="u-text-center" />}
         >

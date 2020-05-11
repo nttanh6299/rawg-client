@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import GamesRendered from './GamesRendered';
 import Loading from './Loading';
 import withInfiniteScroll from './HOCs/withInfiniteScroll';
+import HeaderGenres from './HeaderGenres';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
@@ -19,6 +20,7 @@ const Games = ({ loading, games, fetchGames }) => {
 
   return (
     <div className="games">
+      <HeaderGenres />
       <GamesRendered games={games} />
       <Loading
         loading={loading}

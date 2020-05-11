@@ -30,7 +30,7 @@ body {
 }
 
 .App {
-  padding: 0 4rem;
+  padding: 0 5rem;
 }
 
 .header {
@@ -148,19 +148,30 @@ body {
   margin-top: 2rem;
 }
 
-.sidebar {
-  flex: 0 0 18%;
-}
-
 .icon {
   width: 1.5rem;
   height: 1.5rem;
   fill: currentColor;
 }
 
+.icon--play {
+  box-sizing: content-box;
+  width: 2.5rem;
+  height: 2.5rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: block;
+  padding: 0.6rem;
+  padding-right: 0.4rem;
+  border-radius: 10rem;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
 .nav {
   position: relative;
   color: #fff;
+  margin-bottom: 4rem;
 
   @include mq($tablet) {
     margin-bottom: 0;
@@ -216,12 +227,12 @@ body {
 
   &__link {
     font-size: 1.6rem;
-    text-decoration: none;
     padding: 0.6rem 1.6rem;
     background-color: var(--color-grey-dark-1);
     color: var(--color-grey-dark-3);
     margin: 1rem 1rem 0 0;
     border-radius: 10rem;
+    cursor: pointer;
     transition: 0.2s;
 
     &:hover {
@@ -231,7 +242,6 @@ body {
 
     @include mq($tablet) {
       font-size: 1.6rem;
-      text-decoration: none;
       padding: 1rem 1.6rem;
       color: var(--color-grey-dark-3);
       background-color: transparent;
@@ -252,12 +262,11 @@ body {
   &__link--active {
     background-color: #fff;
     color: var(--color-dark);
-    cursor: pointer;
   }
 }
 
 .games {
-  margin: 2rem 0 15rem 0;
+  margin: 2rem 0 12rem 0;
 }
 
 .games-rendered {
