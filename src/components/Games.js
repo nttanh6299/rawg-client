@@ -8,19 +8,22 @@ import HeaderGenres from './HeaderGenres';
 const propTypes = {
   loading: PropTypes.bool.isRequired,
   games: PropTypes.array,
-  fetchGames: PropTypes.func.isRequired
+  fetchGames: PropTypes.func.isRequired,
+  genres: PropTypes.array,
+  genre: PropTypes.string,
+  changeRoute: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
-const Games = ({ loading, games, fetchGames }) => {
+const Games = ({ loading, games, genres, genre, fetchGames, changeRoute }) => {
   useEffect(() => {
-    fetchGames('/games', 'GET');
-  }, [fetchGames]);
+    fetchGames(genre, '/games?genres=' + genre);
+  }, [fetchGames, genre]);
 
   return (
     <div style={{ margin: '2rem 0 12rem 0' }}>
-      <HeaderGenres />
+      <HeaderGenres genres={genres} genre={genre} changeRoute={changeRoute} />
       <GamesRendered games={games} />
       <Loading
         loading={loading}
@@ -34,4 +37,4 @@ const Games = ({ loading, games, fetchGames }) => {
 Games.propTypes = propTypes;
 Games.defaultProps = defaultProps;
 
-export default withInfiniteScroll(Games, 400);
+export default withInfiniteScroll(Games);

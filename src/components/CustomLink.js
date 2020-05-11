@@ -1,33 +1,51 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { history, preventClick } from '../utils/helpers';
+import PropTypes from 'prop-types';
+import { history, preventClick, compileOptions } from '../utils/helpers';
 
-const CustomLink = ({ to, label, exact = true }) => {
-  const handleChangeRoute = to => () => {
-    history.push('/games/' + to);
+const propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  active: PropTypes.bool.isRequired,
+  path: PropTypes.string,
+  options: PropTypes.object,
+  changeRoute: PropTypes.func.isRequired,
+  onClick: PropTypes.func
+};
+
+const defaultProps = {
+  className: '',
+  onClick: () => {}
+};
+
+const CustomLink = ({
+  children,
+  className,
+  active,
+  path,
+  options,
+  changeRoute,
+  onClick
+}) => {
+  const handleClick = () => {
+    const compiledOptions = compileOptions(options);
+    onClick();
+    changeRoute({ path, keys: {}, options });
+    history.push(`/${path}?${compiledOptions}`);
   };
 
+  const compileClassName = `${className} ${active ? 'nav__link--active' : ''}`;
+
   return (
-    <Route
-      path={'/games/:genre'}
-      exact={exact}
-      children={({ match }) => {
-        const isMatched =
-          match &&
-          match.params &&
-          match.params.genre &&
-          match.params.genre === to;
-        return (
-          <span
-            onClick={!isMatched ? handleChangeRoute(to) : preventClick}
-            className={`nav__link ${isMatched ? 'nav__link--active' : ''}`}
-          >
-            {label}
-          </span>
-        );
-      }}
-    />
+    <span
+      onClick={!active ? handleClick : preventClick}
+      className={`nav__link ${compileClassName}`}
+    >
+      {children}
+    </span>
   );
 };
+
+CustomLink.propTypes = propTypes;
+CustomLink.defaultProps = defaultProps;
 
 export default React.memo(CustomLink);

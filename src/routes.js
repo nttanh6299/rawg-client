@@ -12,7 +12,7 @@ export const routes = [
     component: Games
   },
   {
-    path: '/games/:genre',
+    path: '/games',
     exact: true,
     layout: PublicLayout,
     component: Games

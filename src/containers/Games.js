@@ -1,19 +1,17 @@
 import { connect } from 'react-redux';
 import { Games } from '../components';
 import { fetchGames, fetchGamesNext } from '../actions/GamesActions';
-import { getGames } from '../selectors/CommonSelectors';
+import { getGenre } from '../selectors/CommonSelectors';
+import { getGamesKey } from '../selectors/GamesSelectors';
+import { GENRES } from '../constants/GlobalConstants';
+import { changeRoute } from '../actions/RouterActions';
 
 const mapStateToProps = state => {
-  const games = getGames(state);
-  return { ...games };
+  return { ...getGamesKey(state), genres: GENRES, genre: getGenre(state) };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchGames: (url, method, body, params, cancelToken) =>
-      dispatch(fetchGames(url, method, body, params, cancelToken)),
-    fetchGamesNext: gamesNextUrl => dispatch(fetchGamesNext(gamesNextUrl))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Games);
+export default connect(mapStateToProps, {
+  fetchGames,
+  fetchGamesNext,
+  changeRoute
+})(Games);

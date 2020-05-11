@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Router, Switch } from 'react-router-dom';
 import { history } from './utils/helpers';
 import { routes } from './routes';
 import { PublicRoute } from './layouts';
+import { initRouter } from './actions/RouterActions';
 
-function App() {
+function App({ initRouter }) {
+  useEffect(() => {
+    initRouter();
+  }, [initRouter]);
+
   const renderRoutes = routes => {
     let result = null;
     if (routes.length > 0) {
@@ -32,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(undefined, { initRouter })(App);

@@ -25,7 +25,13 @@ instanceNext.interceptors.response.use(
   }
 );
 
-export async function fetchApi(endpoint, method, body, params, sourceToken) {
+export async function fetchApi(
+  endpoint,
+  method = 'GET',
+  body,
+  params,
+  sourceToken
+) {
   return instanceNext({
     method: method,
     url: endpoint,

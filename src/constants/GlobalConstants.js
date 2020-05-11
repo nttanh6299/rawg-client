@@ -1,97 +1,99 @@
 export const GENRES = [
   {
-    key: 4,
+    key: 'action',
     label: 'Action',
     to: 'action'
   },
   {
-    key: 51,
+    key: 'indie',
     label: 'Indie',
     to: 'indie'
   },
   {
-    key: 3,
+    key: 'adventure',
     label: 'Adventure',
     to: 'adventure'
   },
   {
-    key: 5,
+    key: 'role-playing-games-rpg',
     label: 'RPG',
     to: 'role-playing-games-rpg'
   },
   {
-    key: 2,
+    key: 'shooter',
     label: 'Shooter',
     to: 'shooter'
   },
   {
-    key: 10,
+    key: 'strategy',
     label: 'Strategy',
     to: 'strategy'
   },
   {
-    key: 40,
+    key: 'casual',
     label: 'Casual',
     to: 'casual'
   },
   {
-    key: 14,
+    key: 'simulation',
     label: 'Simulation',
     to: 'simulation'
   },
   {
-    key: 11,
+    key: 'arcade',
     label: 'Arcade',
     to: 'arcade'
   },
   {
-    key: 7,
+    key: 'puzzle',
     label: 'Puzzle',
     to: 'puzzle'
   },
   {
-    key: 83,
+    key: 'platformer',
     label: 'Platformer',
     to: 'platformer'
   },
   {
-    key: 1,
+    key: 'racing',
     label: 'Racing',
     to: 'racing'
   },
   {
-    key: 15,
+    key: 'sports',
     label: 'Sports',
     to: 'sports'
   },
   {
-    key: 19,
+    key: 'family',
     label: 'Family',
     to: 'family'
   },
   {
-    key: 59,
+    key: 'massively-multiplayer',
     label: 'Massively Multiplayer',
     to: 'massively-multiplayer'
   },
   {
-    key: 6,
+    key: 'fighting',
     label: 'Fighting',
     to: 'fighting'
   },
   {
-    key: 28,
+    key: 'board-games',
     label: 'Board Games',
     to: 'board-games'
   },
   {
-    key: 34,
+    key: 'educational',
     label: 'Educational',
     to: 'educational'
   },
   {
-    key: 17,
+    key: 'card',
     label: 'Card',
     to: 'card'
   }
 ];
+
+export const ROUTES_PATH = ['/', '/games'];

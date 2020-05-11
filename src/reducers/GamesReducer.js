@@ -9,7 +9,7 @@ const initialState = {
   games: []
 };
 
-function games(state = initialState, { type, payload }) {
+function gameKey(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_GAMES_REQUEST:
       return {
@@ -24,6 +24,22 @@ function games(state = initialState, { type, payload }) {
         games: [...state.games, ...payload.fetchedData]
       };
 
+    default:
+      return state;
+  }
+}
+
+function games(state = {}, { type, payload }) {
+  switch (type) {
+    case FETCH_GAMES_REQUEST:
+    case FETCH_GAMES_SUCCESS:
+      return {
+        ...state,
+        [payload.genre]: gameKey(state[payload.genre], {
+          type,
+          payload
+        })
+      };
     default:
       return state;
   }

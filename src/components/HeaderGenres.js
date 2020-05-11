@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import CustomLink from './CustomLink';
-import { GENRES } from '../constants/GlobalConstants';
-import { ReactComponent as DoubleArrowIcon } from '../images/SVG/double_arrow.svg';
 
-const HeaderGenres = () => {
-  const [visible, setVisible] = useState(false);
+const propTypes = {
+  genres: PropTypes.array,
+  genre: PropTypes.string,
+  changeRoute: PropTypes.func.isRequired
+};
 
-  const handleVisibleClick = () => {
-    setVisible(!visible);
-  };
+const defaultProps = {};
 
-  const renderGenres = genres => {
-    const result = [];
-    for (let i = 0; i < genres.length; i++) {
-      const genre = genres[i];
-      result.push(<CustomLink key={genre.key} {...genre} />);
-    }
-    return result;
-  };
-
+const HeaderGenres = ({ genres, genre, changeRoute }) => {
   return (
     <nav className="nav">
-      <div className={`nav__menu ${visible ? 'nav__menu--visible' : ''}`}>
-        {renderGenres(GENRES)}
-        {/* <span onClick={handleVisibleClick} className="nav__toggle-menu">
-          <DoubleArrowIcon
-            className={`nav__icon ${
-              visible ? 'nav__icon--down' : 'nav__icon--up'
-            }`}
-          />
-        </span> */}
+      <div className={`nav__menu`}>
+        {genres.map(g => (
+          <CustomLink
+            key={g.key}
+            path={'games'}
+            active={g.key === genre}
+            options={{ genre: g.key }}
+            changeRoute={changeRoute}
+            {...g}
+          >
+            {g.label}
+          </CustomLink>
+        ))}
       </div>
     </nav>
   );
 };
+
+HeaderGenres.propTypes = propTypes;
+HeaderGenres.defaultProps = defaultProps;
 
 export default HeaderGenres;

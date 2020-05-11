@@ -5,20 +5,29 @@ const propTypes = {
   loading: PropTypes.bool.isRequired,
   nextUrl: PropTypes.string,
   games: PropTypes.array,
-  fetchGamesNext: PropTypes.func.isRequired
+  fetchGamesNext: PropTypes.func.isRequired,
+  genre: PropTypes.string
 };
 
-const defaultProps = {};
+const defaultProps = {
+  className: ''
+};
 
 const withInfiniteScroll = (InnerComponent, debounce = 0) => {
-  const InfiniteScroll = ({ fetchGamesNext, nextUrl, className, ...props }) => {
+  const InfiniteScroll = ({
+    fetchGamesNext,
+    nextUrl,
+    genre,
+    className,
+    ...props
+  }) => {
     useEffect(() => {
       const handleScroll = () => {
         if (
           window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 200
         ) {
-          setTimeout(() => fetchGamesNext(nextUrl), debounce);
+          setTimeout(() => fetchGamesNext(genre, nextUrl), debounce);
         }
       };
 
@@ -27,11 +36,11 @@ const withInfiniteScroll = (InnerComponent, debounce = 0) => {
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    }, [fetchGamesNext, nextUrl]);
+    }, [fetchGamesNext, genre, nextUrl]);
 
     return (
       <div className={className}>
-        <InnerComponent {...props} />
+        <InnerComponent genre={genre} {...props} />
       </div>
     );
   };
