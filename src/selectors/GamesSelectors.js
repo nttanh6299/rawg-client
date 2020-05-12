@@ -1,18 +1,10 @@
 import { createSelector } from 'reselect';
-import { getGames, getGenre } from './CommonSelectors';
+import { getGames, getGenre, getSearch } from './CommonSelectors';
+import { gameCollectionData } from '../utils/GamesUtils';
 
-export const getGamesKey = createSelector(
+export const getGameCollectionData = createSelector(
   getGames,
   getGenre,
-  (games, genre) => {
-    const gamesKey = games[genre];
-    if (gamesKey) {
-      return { ...gamesKey };
-    }
-    return {
-      loading: false,
-      nextUrl: null,
-      games: []
-    };
-  }
+  getSearch,
+  gameCollectionData
 );

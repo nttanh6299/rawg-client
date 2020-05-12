@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
-  nextUrl: PropTypes.string,
+  gamesNextUrl: PropTypes.string,
   games: PropTypes.array,
   fetchGamesNext: PropTypes.func.isRequired,
-  genre: PropTypes.string
+  collectionKey: PropTypes.string
 };
 
 const defaultProps = {
@@ -16,8 +16,8 @@ const defaultProps = {
 const withInfiniteScroll = (InnerComponent, debounce = 0) => {
   const InfiniteScroll = ({
     fetchGamesNext,
-    nextUrl,
-    genre,
+    gamesNextUrl,
+    collectionKey,
     className,
     ...props
   }) => {
@@ -27,7 +27,10 @@ const withInfiniteScroll = (InnerComponent, debounce = 0) => {
           window.innerHeight + window.scrollY >=
           document.body.offsetHeight - 200
         ) {
-          setTimeout(() => fetchGamesNext(genre, nextUrl), debounce);
+          setTimeout(
+            () => fetchGamesNext(collectionKey, gamesNextUrl),
+            debounce
+          );
         }
       };
 
@@ -36,11 +39,11 @@ const withInfiniteScroll = (InnerComponent, debounce = 0) => {
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
-    }, [fetchGamesNext, genre, nextUrl]);
+    }, [fetchGamesNext, collectionKey, gamesNextUrl]);
 
     return (
       <div className={className}>
-        <InnerComponent genre={genre} {...props} />
+        <InnerComponent collectionKey={collectionKey} {...props} />
       </div>
     );
   };

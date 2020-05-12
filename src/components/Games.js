@@ -11,7 +11,9 @@ const propTypes = {
   genres: PropTypes.array,
   genre: PropTypes.string,
   changeRoute: PropTypes.func.isRequired,
-  fetchGamesIfNeeded: PropTypes.func.isRequired
+  fetchGamesIfNeeded: PropTypes.func.isRequired,
+  collectionKey: PropTypes.string,
+  gamesUrl: PropTypes.string
 };
 
 const defaultProps = {};
@@ -22,11 +24,13 @@ const Games = ({
   genres,
   genre,
   changeRoute,
-  fetchGamesIfNeeded
+  fetchGamesIfNeeded,
+  collectionKey,
+  gamesUrl
 }) => {
   useEffect(() => {
-    //fetchGamesIfNeeded(genre, '/games?genres=' + genre);
-  }, [fetchGamesIfNeeded, genre]);
+    fetchGamesIfNeeded(collectionKey, gamesUrl);
+  }, [fetchGamesIfNeeded, collectionKey, gamesUrl]);
 
   return (
     <div style={{ margin: '2rem 0 12rem 0' }}>

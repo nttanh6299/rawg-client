@@ -9,7 +9,7 @@ const initialState = {
   games: []
 };
 
-function gameKey(state = initialState, { type, payload }) {
+function collection(state = initialState, { type, payload }) {
   switch (type) {
     case FETCH_GAMES_REQUEST:
       return {
@@ -35,7 +35,7 @@ function games(state = {}, { type, payload }) {
     case FETCH_GAMES_SUCCESS:
       return {
         ...state,
-        [payload.genre]: gameKey(state[payload.genre], {
+        [payload.collectionKey]: collection(state[payload.collectionKey], {
           type,
           payload
         })
