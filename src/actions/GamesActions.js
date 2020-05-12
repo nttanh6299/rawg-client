@@ -35,10 +35,25 @@ export const fetchGamesNext = (genre, gamesNextUrl) => async (
   const state = getState();
   const games = getGames(state);
   const gamesKey = games[genre];
-
-  const isFetching = !!gamesKey ? gamesKey.loading : false;
-  const shouldFetch = !isFetching && gamesNextUrl;
+  const isExist = !!gamesKey;
+  const isFetching = isExist ? gamesKey.loading : false;
+  const shouldFetch = isExist && !isFetching && gamesNextUrl;
   if (shouldFetch) {
     dispatch(fetchGames(genre, gamesNextUrl));
+  }
+};
+
+export const fetchGamesIfNeeded = (genre, url) => async (
+  dispatch,
+  getState
+) => {
+  const state = getState();
+  const games = getGames(state);
+  const gamesKey = games[genre];
+  const isExists = !!gamesKey;
+  const isFetching = isExists ? gamesKey.loading : false;
+  const hasItems = isExists ? gamesKey.games.length > 0 : false;
+  if (!isExists || (!hasItems && !isFetching)) {
+    dispatch(fetchGames(genre, url));
   }
 };

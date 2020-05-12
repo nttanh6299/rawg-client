@@ -8,18 +8,25 @@ import HeaderGenres from './HeaderGenres';
 const propTypes = {
   loading: PropTypes.bool.isRequired,
   games: PropTypes.array,
-  fetchGames: PropTypes.func.isRequired,
   genres: PropTypes.array,
   genre: PropTypes.string,
-  changeRoute: PropTypes.func.isRequired
+  changeRoute: PropTypes.func.isRequired,
+  fetchGamesIfNeeded: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
 
-const Games = ({ loading, games, genres, genre, fetchGames, changeRoute }) => {
+const Games = ({
+  loading,
+  games,
+  genres,
+  genre,
+  changeRoute,
+  fetchGamesIfNeeded
+}) => {
   useEffect(() => {
-    fetchGames(genre, '/games?genres=' + genre);
-  }, [fetchGames, genre]);
+    fetchGamesIfNeeded(genre, '/games?genres=' + genre);
+  }, [fetchGamesIfNeeded, genre]);
 
   return (
     <div style={{ margin: '2rem 0 12rem 0' }}>

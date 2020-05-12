@@ -1,8 +1,6 @@
 @import './mixins';
 @import './variables';
 @import './base';
-@import './utilities';
-@import './modified';
 
 @import './components/header';
 @import './components/search-bar';
@@ -13,3 +11,6 @@
 @import './components/video';
 @import './components/loading';
 @import './components/icon';
+
+@import './utilities';
+@import './modified';
