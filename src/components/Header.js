@@ -11,8 +11,20 @@ const defaultProps = {};
 
 const Header = ({ changeRoute }) => {
   const handleClick = () => {
-    changeRoute({ path: '/', keys: {}, options: {} });
-    history.push('/');
+    changeRoute({ path: '/games', keys: {}, options: {} });
+    history.push('/games');
+  };
+
+  const handleKeyPress = e => {
+    const code = e.which || e.keyCode;
+    //press enter
+    if (code === 13) {
+      const value = e.target.value;
+      if (value !== '') {
+        changeRoute({ path: 'games', keys: {}, options: { query: value } });
+        history.push(`/games?query=${value}`);
+      }
+    }
   };
 
   return (
@@ -20,7 +32,7 @@ const Header = ({ changeRoute }) => {
       <h1 className="header__logo" onClick={handleClick}>
         RAWGC
       </h1>
-      <form className="search-bar">
+      <div className="search-bar">
         <button className="search-bar__button">
           <SearchIcon className="search-bar__icon" />
         </button>
@@ -28,8 +40,9 @@ const Header = ({ changeRoute }) => {
           type="text"
           className="search-bar__input"
           placeholder="Search for name"
+          onKeyPress={handleKeyPress}
         />
-      </form>
+      </div>
       <button className="header__login">Login</button>
     </header>
   );
