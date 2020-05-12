@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
 import { ReactComponent as SearchIcon } from '../images/SVG/search.svg';
 
-const Header = () => {
+const propTypes = {
+  changeRoute: PropTypes.func.isRequired
+};
+
+const defaultProps = {};
+
+const Header = ({ changeRoute }) => {
   const handleClick = () => {
+    changeRoute({ path: '/', keys: {}, options: {} });
     history.push('/');
   };
 
@@ -26,5 +34,8 @@ const Header = () => {
     </header>
   );
 };
+
+Header.propTypes = propTypes;
+Header.defaultProps = defaultProps;
 
 export default React.memo(Header);

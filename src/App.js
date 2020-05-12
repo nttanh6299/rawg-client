@@ -5,6 +5,7 @@ import { history } from './utils/helpers';
 import { routes } from './routes';
 import { PublicRoute } from './layouts';
 import { initRouter } from './actions/RouterActions';
+import HeaderContainer from './containers/HeaderContainer';
 
 function App({ initRouter }) {
   useEffect(() => {
@@ -33,7 +34,10 @@ function App({ initRouter }) {
 
   return (
     <Router history={history}>
-      <div className="App">{renderRoutes(routes)}</div>
+      <div className="App">
+        <HeaderContainer />
+        {renderRoutes(routes)}
+      </div>
     </Router>
   );
 }

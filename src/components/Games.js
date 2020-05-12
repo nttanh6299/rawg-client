@@ -25,7 +25,7 @@ const Games = ({
   fetchGamesIfNeeded
 }) => {
   useEffect(() => {
-    fetchGamesIfNeeded(genre, '/games?genres=' + genre);
+    //fetchGamesIfNeeded(genre, '/games?genres=' + genre);
   }, [fetchGamesIfNeeded, genre]);
 
   return (

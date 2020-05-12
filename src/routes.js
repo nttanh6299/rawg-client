@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { PublicLayout } from './layouts';
 
-const Games = lazy(() => import('./containers/Games'));
+const GamesContainer = lazy(() => import('./containers/GamesContainer'));
 const NotFound = lazy(() => import('./containers/NotFound'));
 
 export const routes = [
@@ -9,13 +9,13 @@ export const routes = [
     path: '/',
     exact: true,
     layout: PublicLayout,
-    component: Games
+    component: GamesContainer
   },
   {
     path: '/games',
     exact: true,
     layout: PublicLayout,
-    component: Games
+    component: GamesContainer
   },
   {
     path: '*',
