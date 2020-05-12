@@ -95,5 +95,3 @@ export const GENRES = [
     to: 'card'
   }
 ];
-
-export const ROUTES_PATH = ['/', '/games'];
