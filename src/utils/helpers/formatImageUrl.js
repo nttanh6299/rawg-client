@@ -8,5 +8,5 @@ export function formatImageUrl(url, clipExists = true) {
     ? LIGHTWEIGHT_IMAGE_URL.VIDEO
     : LIGHTWEIGHT_IMAGE_URL.NO_VIDEO;
 
-  return url.replace('https://media.rawg.io/media/', urlReplaced);
+  return !!url ? url.replace('https://media.rawg.io/media/', urlReplaced) : '';
 }

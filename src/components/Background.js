@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { elementInViewport, formatImageUrl } from '../utils/helpers';
 
 const propTypes = {
-  backgroundImage: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string,
   hasVideo: PropTypes.bool.isRequired,
   className: PropTypes.string,
   children: PropTypes.node
 };
 
 const defaultProps = {
-  className: ''
+  className: '',
+  backgroundImage: ''
 };
 
 const Background = ({ backgroundImage, hasVideo, className, children }) => {
