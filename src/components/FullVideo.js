@@ -24,7 +24,7 @@ const FullVideo = ({ onClose, videoId }) => {
           height="100%"
           frameBorder="0"
           allowFullScreen
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+          allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
           title="Youtube video player"
           src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
         ></iframe>
