@@ -30,7 +30,9 @@ body {
 }
 
 .App {
+  max-width: $screen-max-width;
   padding: 0 5rem;
+  margin: 0 auto;
 }
 
 .column {
