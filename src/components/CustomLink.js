@@ -26,6 +26,8 @@ const CustomLink = ({
   changeRoute,
   onClick
 }) => {
+  console.log('abc');
+
   const handleClick = () => {
     const compiledOptions = compileOptions(options);
     onClick();
@@ -33,12 +35,12 @@ const CustomLink = ({
     history.push(`/${path}?${compiledOptions}`);
   };
 
-  const compileClassName = `${className} ${active ? 'nav__link--active' : ''}`;
+  const compileClassName = `${className} ${active ? 'link--active' : ''}`;
 
   return (
     <span
       onClick={!active ? handleClick : preventClick}
-      className={`nav__link ${compileClassName}`}
+      className={`link${compileClassName}`}
     >
       {children}
     </span>

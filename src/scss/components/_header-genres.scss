@@ -1,0 +1,61 @@
+.header-genres {
+  position: relative;
+  color: #fff;
+  margin-bottom: 4rem;
+
+  @include mq($tablet) {
+    margin-top: -3rem;
+    margin-bottom: 0;
+  }
+
+  &__expanded {
+    display: none;
+    margin-bottom: 1rem;
+
+    @include mq($tablet) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+
+  &__current-genre {
+    font-size: 1.6em;
+    text-transform: uppercase;
+  }
+
+  &__expanded-icon {
+    display: inline-block;
+    text-align: center;
+    font-size: 3rem;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin-left: 1rem;
+    border-radius: 0.4rem;
+    background-color: var(--color-grey-dark-1);
+  }
+
+  &__menu {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    @include mq($tablet) {
+      background-color: var(--color-dark);
+      position: absolute;
+      top: 3.8rem;
+      left: 0;
+      width: 100%;
+      padding: 0;
+      flex-direction: column;
+      text-align: center;
+      height: 0;
+      z-index: 1;
+    }
+
+    &--expanded {
+      height: auto;
+    }
+  }
+}
