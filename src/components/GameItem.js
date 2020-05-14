@@ -12,17 +12,26 @@ const propTypes = {
   metacritic: PropTypes.number,
   clip: PropTypes.shape({
     clip: PropTypes.string,
-    clips: PropTypes.object
-  })
+    video: PropTypes.string
+  }),
+  onClick: PropTypes.func
 };
 
 const defaultProps = {
   clip: {
-    clip: ''
+    clip: '',
+    video: ''
   }
 };
 
-const GameItem = ({ name, slug, backgroundImage, metacritic, clip }) => {
+const GameItem = ({
+  name,
+  slug,
+  backgroundImage,
+  metacritic,
+  clip,
+  onClick
+}) => {
   const [hover, setHover] = useState(false);
 
   const handleMouseEnter = e => {
@@ -45,7 +54,9 @@ const GameItem = ({ name, slug, backgroundImage, metacritic, clip }) => {
       <Background backgroundImage={backgroundImage} hasVideo={hasVideo}>
         {hasVideo && <PlayIcon className="icon icon--play" />}
       </Background>
-      {showVideo && <Video src={clip.clip} />}
+      {showVideo && (
+        <Video src={clip.clip} videoId={clip.video} onClick={onClick} />
+      )}
       <div className="game__info">
         <span className="game__name" title={name}>
           {name}

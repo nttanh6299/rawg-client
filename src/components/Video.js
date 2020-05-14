@@ -4,14 +4,15 @@ import Loading from './Loading';
 import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 
 const propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 const defaultProps = {
   src: ''
 };
 
-const Video = ({ src }) => {
+const Video = ({ src, videoId, onClick }) => {
   const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
 
@@ -34,7 +35,10 @@ const Video = ({ src }) => {
         src={src}
         loop
       />
-      <button className="video__full-frame">
+      <button
+        className="video__full-frame"
+        onClick={onClick.bind(this, videoId)}
+      >
         <PlayIcon className="icon" />
         <span>Full video</span>
       </button>

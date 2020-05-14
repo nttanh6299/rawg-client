@@ -1,0 +1,49 @@
+.full-video {
+  font-size: 3rem;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: var(--color-dark);
+
+  &__frame {
+    position: absolute;
+    top: 10vh;
+    left: 10vw;
+    width: 70vw;
+    height: 80vh;
+
+    @include mq($tablet) {
+      top: 10vh;
+      left: 0;
+      width: 100vw;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 10vh;
+    right: 10vw;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100rem;
+    background-color: var(--color-grey-dark-1);
+    cursor: pointer;
+
+    &:hover {
+      transition: 0.3s;
+      background-color: #fff;
+      color: var(--color-dark);
+    }
+
+    @include mq($tablet) {
+      top: 2.5vh;
+      right: 2.5vw;
+    }
+  }
+}
