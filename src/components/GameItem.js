@@ -16,8 +16,8 @@ const propTypes = {
     clip: PropTypes.string,
     video: PropTypes.string
   }),
-  handleSetVideoId: PropTypes.func,
-  changeRoute: PropTypes.func
+  changeRoute: PropTypes.func.isRequired,
+  playFullVideo: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -33,8 +33,8 @@ const GameItem = ({
   backgroundImage,
   metacritic,
   clip,
-  handleSetVideoId,
-  changeRoute
+  changeRoute,
+  playFullVideo
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -62,12 +62,12 @@ const GameItem = ({
         <Video
           src={clip.clip}
           videoId={clip.video}
-          handleSetVideoId={handleSetVideoId}
+          playFullVideo={playFullVideo}
         />
       )}
       <div className="game-item__info">
         <CustomLink
-          className="game-item__name"
+          className="heading-2 game-item__name"
           title={name}
           active={false}
           path={GAME_PATH}

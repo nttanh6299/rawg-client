@@ -4,6 +4,7 @@ import GamesRendered from './GamesRendered';
 import Loading from './Loading';
 import withInfiniteScroll from './HOCs/withInfiniteScroll';
 import HeaderGenres from './HeaderGenres';
+import FullVideo from './FullVideo';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
@@ -13,7 +14,10 @@ const propTypes = {
   changeRoute: PropTypes.func.isRequired,
   fetchGamesIfNeeded: PropTypes.func.isRequired,
   collectionKey: PropTypes.string,
-  gamesUrl: PropTypes.string
+  gamesUrl: PropTypes.string,
+  videoId: PropTypes.string,
+  playFullVideo: PropTypes.func.isRequired,
+  closeFullVideo: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -26,7 +30,10 @@ const Games = ({
   changeRoute,
   fetchGamesIfNeeded,
   collectionKey,
-  gamesUrl
+  gamesUrl,
+  videoId,
+  playFullVideo,
+  closeFullVideo
 }) => {
   useEffect(() => {
     fetchGamesIfNeeded(collectionKey, gamesUrl);
@@ -35,12 +42,17 @@ const Games = ({
   return (
     <div style={{ margin: '2rem 0 12rem 0' }}>
       <HeaderGenres genres={genres} genre={genre} changeRoute={changeRoute} />
-      <GamesRendered games={games} changeRoute={changeRoute} />
+      <GamesRendered
+        games={games}
+        changeRoute={changeRoute}
+        playFullVideo={playFullVideo}
+      />
       <Loading
         loading={loading}
         style={{ marginTop: '2rem' }}
         className="u-text-center"
       />
+      <FullVideo onClose={closeFullVideo} videoId={videoId} />
     </div>
   );
 };
