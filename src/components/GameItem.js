@@ -51,7 +51,7 @@ const GameItem = ({
 
   return (
     <div
-      className="game"
+      className="game-item"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -65,9 +65,9 @@ const GameItem = ({
           handleSetVideoId={handleSetVideoId}
         />
       )}
-      <div className="game__info">
+      <div className="game-item__info">
         <CustomLink
-          className="game__name"
+          className="game-item__name"
           title={name}
           active={false}
           path={GAME_PATH}
@@ -76,7 +76,7 @@ const GameItem = ({
         >
           {name}
         </CustomLink>
-        <span className={`game__meta ${setMetacriticColor(metacritic)}`}>
+        <span className={`game-item__meta ${setMetacriticColor(metacritic)}`}>
           {metacritic}
         </span>
       </div>
