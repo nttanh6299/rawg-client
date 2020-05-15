@@ -4,14 +4,15 @@ import GameItem from './GameItem';
 import FullVideo from './FullVideo';
 
 const propTypes = {
-  games: PropTypes.array
+  games: PropTypes.array,
+  changeRoute: PropTypes.func
 };
 
 const defaultProps = {
   games: []
 };
 
-const GameRendered = ({ games }) => {
+const GameRendered = ({ games, changeRoute }) => {
   const [videoId, setVideoId] = useState('');
 
   const handleSetVideoId = useCallback(videoId => {
@@ -24,7 +25,12 @@ const GameRendered = ({ games }) => {
 
   const renderGames = games => {
     return games.map(game => (
-      <GameItem key={game.id} {...game} onClick={handleSetVideoId} />
+      <GameItem
+        key={game.id}
+        {...game}
+        handleSetVideoId={handleSetVideoId}
+        changeRoute={changeRoute}
+      />
     ));
   };
 

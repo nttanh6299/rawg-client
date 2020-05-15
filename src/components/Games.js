@@ -35,7 +35,7 @@ const Games = ({
   return (
     <div style={{ margin: '2rem 0 12rem 0' }}>
       <HeaderGenres genres={genres} genre={genre} changeRoute={changeRoute} />
-      <GamesRendered games={games} />
+      <GamesRendered games={games} changeRoute={changeRoute} />
       <Loading
         loading={loading}
         style={{ marginTop: '2rem' }}

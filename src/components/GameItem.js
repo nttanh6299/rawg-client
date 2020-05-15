@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Background from './Background';
 import Video from './Video';
+import CustomLink from './CustomLink';
 import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 import { setMetacriticColor } from '../utils/helpers';
+import { GAME_PATH } from '../constants/urlApi';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -14,7 +16,8 @@ const propTypes = {
     clip: PropTypes.string,
     video: PropTypes.string
   }),
-  onClick: PropTypes.func
+  handleSetVideoId: PropTypes.func,
+  changeRoute: PropTypes.func
 };
 
 const defaultProps = {
@@ -30,7 +33,8 @@ const GameItem = ({
   backgroundImage,
   metacritic,
   clip,
-  onClick
+  handleSetVideoId,
+  changeRoute
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -55,12 +59,23 @@ const GameItem = ({
         {hasVideo && <PlayIcon className="icon icon--play" />}
       </Background>
       {showVideo && (
-        <Video src={clip.clip} videoId={clip.video} onClick={onClick} />
+        <Video
+          src={clip.clip}
+          videoId={clip.video}
+          handleSetVideoId={handleSetVideoId}
+        />
       )}
       <div className="game__info">
-        <span className="game__name" title={name}>
+        <CustomLink
+          className="game__name"
+          title={name}
+          active={false}
+          path={GAME_PATH}
+          keys={{ slug }}
+          changeRoute={changeRoute}
+        >
           {name}
-        </span>
+        </CustomLink>
         <span className={`game__meta ${setMetacriticColor(metacritic)}`}>
           {metacritic}
         </span>

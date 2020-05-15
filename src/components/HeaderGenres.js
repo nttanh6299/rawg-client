@@ -35,6 +35,7 @@ const HeaderGenres = ({ genres, genre, changeRoute }) => {
         {genres.map(g => (
           <CustomLink
             key={g.key}
+            className={`link ${g.key === genre ? 'link--active' : ''}`}
             onClick={handleClick}
             path={GAMES_PATH}
             active={g.key === genre}

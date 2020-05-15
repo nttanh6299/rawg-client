@@ -16,7 +16,10 @@ const propTypes = {
 
 const defaultProps = {
   className: '',
-  onClick: () => {}
+  onClick: () => {},
+  path: '',
+  keys: {},
+  options: {}
 };
 
 const CustomLink = ({
@@ -27,7 +30,8 @@ const CustomLink = ({
   options,
   keys,
   changeRoute,
-  onClick
+  onClick,
+  ...props
 }) => {
   const handleClick = () => {
     const route = { path, keys, options };
@@ -36,12 +40,11 @@ const CustomLink = ({
     history.push(compileRoute(route));
   };
 
-  const compileClassName = `${className} ${active ? 'link--active' : ''}`;
-
   return (
     <span
       onClick={!active ? handleClick : preventClick}
-      className={`link${compileClassName}`}
+      className={className}
+      {...props}
     >
       {children}
     </span>

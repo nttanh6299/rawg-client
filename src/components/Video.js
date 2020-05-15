@@ -5,14 +5,14 @@ import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 
 const propTypes = {
   src: PropTypes.string,
-  onClick: PropTypes.func
+  handleSetVideoId: PropTypes.func
 };
 
 const defaultProps = {
   src: ''
 };
 
-const Video = ({ src, videoId, onClick }) => {
+const Video = ({ src, videoId, handleSetVideoId }) => {
   const [loading, setLoading] = useState(true);
   const videoRef = useRef(null);
 
@@ -37,7 +37,7 @@ const Video = ({ src, videoId, onClick }) => {
       />
       <button
         className="video__full-frame"
-        onClick={onClick.bind(this, videoId)}
+        onClick={handleSetVideoId.bind(this, videoId)}
       >
         <PlayIcon className="icon" />
         <span>Full video</span>
