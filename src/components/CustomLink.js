@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { history, preventClick, compileOptions } from '../utils/helpers';
+import { history, preventClick } from '../utils/helpers';
+import { compileRoute } from '../utils/RouterUtils';
 
 const propTypes = {
   children: PropTypes.node.isRequired,
@@ -8,6 +9,7 @@ const propTypes = {
   active: PropTypes.bool.isRequired,
   path: PropTypes.string,
   options: PropTypes.object,
+  keys: PropTypes.object,
   changeRoute: PropTypes.func.isRequired,
   onClick: PropTypes.func
 };
@@ -23,16 +25,15 @@ const CustomLink = ({
   active,
   path,
   options,
+  keys,
   changeRoute,
   onClick
 }) => {
-  console.log('abc');
-
   const handleClick = () => {
-    const compiledOptions = compileOptions(options);
+    const route = { path, keys, options };
     onClick();
-    changeRoute({ path, keys: {}, options });
-    history.push(`/${path}?${compiledOptions}`);
+    changeRoute(route);
+    history.push(compileRoute(route));
   };
 
   const compileClassName = `${className} ${active ? 'link--active' : ''}`;

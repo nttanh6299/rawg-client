@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomLink from './CustomLink';
+import { GAMES_PATH } from '../constants/urlApi';
 
 const propTypes = {
   genres: PropTypes.array,
@@ -35,7 +36,7 @@ const HeaderGenres = ({ genres, genre, changeRoute }) => {
           <CustomLink
             key={g.key}
             onClick={handleClick}
-            path={'games'}
+            path={GAMES_PATH}
             active={g.key === genre}
             options={{ genre: g.key }}
             changeRoute={changeRoute}

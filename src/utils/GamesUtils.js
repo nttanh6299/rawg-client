@@ -1,4 +1,4 @@
-import { GAMES_URL } from '../constants/urlApi';
+import { GAMES_PATH } from '../constants/urlApi';
 import {
   GENRE_COLLECTION_TYPE,
   SEARCH_COLLECTION_TYPE
@@ -9,12 +9,12 @@ const isFetching = (collections, collectionKey) =>
 
 const gamesUrlByGenre = genre => {
   const genreUriSegment = `genres=${genre}`;
-  return `${GAMES_URL}?${genreUriSegment}`;
+  return `${GAMES_PATH}?${genreUriSegment}`;
 };
 
 const gamesUrlBySearch = search => {
   const searchUriSegment = `search=${search}`;
-  return `${GAMES_URL}?${searchUriSegment}`;
+  return `${GAMES_PATH}?${searchUriSegment}`;
 };
 
 const gamesNextUrl = (collections, collectionKey) =>

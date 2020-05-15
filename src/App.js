@@ -6,10 +6,13 @@ import { routes } from './routes';
 import { PublicRoute } from './layouts';
 import { initRouter } from './actions/RouterActions';
 import HeaderContainer from './containers/HeaderContainer';
+import { INDEX_PATH, GAMES_PATH, GAME_PATH } from './constants/urlApi';
+
+const paths = [INDEX_PATH, GAMES_PATH, GAME_PATH];
 
 function App({ initRouter }) {
   useEffect(() => {
-    initRouter();
+    initRouter(paths);
   }, [initRouter]);
 
   const renderRoutes = routes => {

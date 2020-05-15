@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
 import { ReactComponent as SearchIcon } from '../images/SVG/search.svg';
+import { GAMES_PATH } from '../constants/urlApi';
 
 const propTypes = {
   changeRoute: PropTypes.func.isRequired
@@ -11,8 +12,8 @@ const defaultProps = {};
 
 const Header = ({ changeRoute }) => {
   const handleClick = () => {
-    changeRoute({ path: '/games', keys: {}, options: {} });
-    history.push('/games');
+    changeRoute({ path: GAMES_PATH, keys: {}, options: {} });
+    history.push(GAMES_PATH);
   };
 
   const handleKeyPress = e => {
