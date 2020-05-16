@@ -77,7 +77,7 @@ const GameItem = ({
           {name}
         </CustomLink>
         <span className={`game-item__meta ${setMetacriticColor(metacritic)}`}>
-          {metacritic}
+          {!!metacritic ? metacritic : 0}
         </span>
       </div>
     </div>
