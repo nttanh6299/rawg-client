@@ -43,3 +43,21 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.heading-1,
+.heading-2,
+.heading-3 {
+  color: var(--color-grey-dark-3);
+}
+
+.heading-1 {
+  font-size: 2.4rem;
+}
+
+.heading-2 {
+  font-size: 1.8rem;
+}
+
+.heading-3 {
+  font-size: 1.4rem;
+}

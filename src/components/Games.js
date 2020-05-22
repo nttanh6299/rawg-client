@@ -4,7 +4,6 @@ import GamesRendered from './GamesRendered';
 import Loading from './Loading';
 import withInfiniteScroll from './HOCs/withInfiniteScroll';
 import HeaderGenres from './HeaderGenres';
-import FullVideo from './FullVideo';
 
 const propTypes = {
   loading: PropTypes.bool.isRequired,
@@ -16,8 +15,7 @@ const propTypes = {
   collectionKey: PropTypes.string,
   gamesUrl: PropTypes.string,
   videoId: PropTypes.string,
-  playFullVideo: PropTypes.func.isRequired,
-  closeFullVideo: PropTypes.func.isRequired
+  playFullVideo: PropTypes.func.isRequired
 };
 
 const defaultProps = {};
@@ -31,9 +29,7 @@ const Games = ({
   fetchGamesIfNeeded,
   collectionKey,
   gamesUrl,
-  videoId,
-  playFullVideo,
-  closeFullVideo
+  playFullVideo
 }) => {
   useEffect(() => {
     fetchGamesIfNeeded(collectionKey, gamesUrl);
@@ -52,7 +48,6 @@ const Games = ({
         style={{ marginTop: '2rem' }}
         className="u-text-center"
       />
-      <FullVideo onClose={closeFullVideo} videoId={videoId} />
     </div>
   );
 };

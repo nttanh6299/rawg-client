@@ -1,21 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
 import { Router, Switch } from 'react-router-dom';
 import { history } from './utils/helpers';
 import { routes } from './routes';
 import { PublicRoute } from './layouts';
 import { initRouter } from './actions/RouterActions';
+import { closeFullVideo } from './actions/VideoActions';
+import { getVideoId } from './selectors/CommonSelectors';
 import HeaderContainer from './containers/HeaderContainer';
 import { INDEX_PATH, GAMES_PATH, GAME_PATH } from './constants/urlApi';
+import { FullVideo } from './components';
 
 const paths = [INDEX_PATH, GAMES_PATH, GAME_PATH];
 
-function App({ initRouter }) {
+function App({ initRouter, closeFullVideo, videoId }) {
   useEffect(() => {
     initRouter(paths);
   }, [initRouter]);
 
-  const renderRoutes = routes => {
+  const renderRoutes = useCallback(routes => {
     let result = null;
     if (routes.length > 0) {
       result = routes.map((route, index) => {
@@ -33,16 +36,23 @@ function App({ initRouter }) {
       });
     }
     return <Switch>{result}</Switch>;
-  };
+  }, []);
 
   return (
     <Router history={history}>
       <div className="App">
         <HeaderContainer />
         {renderRoutes(routes)}
+        <FullVideo onClose={closeFullVideo} videoId={videoId} />
       </div>
     </Router>
   );
 }
 
-export default connect(undefined, { initRouter })(App);
+const mapStateToProps = state => {
+  return {
+    videoId: getVideoId(state)
+  };
+};
+
+export default connect(mapStateToProps, { initRouter, closeFullVideo })(App);

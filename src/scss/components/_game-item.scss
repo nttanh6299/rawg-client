@@ -18,11 +18,11 @@
   }
 
   &__name {
+    color: #fff;
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 1.9rem;
     font-weight: 400;
     cursor: pointer;
   }
