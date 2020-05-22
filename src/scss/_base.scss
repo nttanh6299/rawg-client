@@ -21,8 +21,14 @@ html {
   }
 }
 
+body,
+button,
+input,
+textarea {
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
-  font-family: sans-serif;
   font-weight: 400;
   line-height: 1.6;
   background-color: var(--color-dark);
