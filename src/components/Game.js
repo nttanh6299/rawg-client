@@ -142,7 +142,9 @@ const Game = ({
           <h3 className="heading-3">
             Homepage
             <p className="game__homepage">
-              <a href={website}>{website}</a>
+              <a href={website} target="blank">
+                {website}
+              </a>
             </p>
           </h3>
           <h3 className="heading-3">
