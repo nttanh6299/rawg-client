@@ -6,8 +6,8 @@
   justify-content: center;
   position: relative;
 
-  @include mq(laptop) {
-    width: 90%;
+  @include mq($laptop) {
+    width: 100%;
   }
 
   &__back-art {
@@ -21,7 +21,7 @@
   }
 
   &__main {
-    margin-bottom: 10rem;
+    margin-bottom: 6rem;
     display: flex;
     position: relative;
     z-index: 1;
@@ -42,9 +42,8 @@
     background-color: var(--color-grey-dark-1);
     background-size: cover;
     background-position: center center;
-    border-radius: 0.8rem;
 
-    @include mq(tablet) {
+    @include mq($tablet) {
       overflow: hidden;
       height: 0;
       padding-top: 56.25%;
@@ -161,11 +160,25 @@
     grid-template-columns: repeat(2, minmax(50px, 1fr));
     column-gap: 1rem;
     row-gap: 1rem;
+
+    @include mq($tablet) {
+      grid-template-columns: repeat(1, minmax(50px, 1fr));
+    }
   }
 
   &__image {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    height: 300px;
+    height: 25rem;
+
+    @include mq($tablet) {
+      height: 25rem;
+    }
+
+    @include mq($phablet) {
+      height: 20rem;
+    }
   }
 
   &__show-more {
@@ -180,14 +193,31 @@
 
   &__sub {
     display: flex;
+
+    @include mq($tablet) {
+      flex-direction: column;
+    }
   }
 
   &__tags {
+    display: flex;
+    flex-direction: column;
+
     & span {
-      display: block;
+      display: inline-block;
       font-weight: 100;
       color: #fff;
       cursor: pointer;
+
+      @include mq($tablet) {
+        border-bottom: 1px solid #fff;
+        margin-right: 1rem;
+      }
+    }
+
+    @include mq($tablet) {
+      flex-direction: row;
+      flex-wrap: wrap;
     }
   }
 }
@@ -204,8 +234,16 @@
 .left {
   flex: 0 0 80%;
   margin-right: 2rem;
+
+  @include mq($tablet) {
+    margin: 0;
+  }
 }
 
 .right {
   margin-top: -0.5rem;
+
+  @include mq($tablet) {
+    margin: 2rem 0 3rem 0;
+  }
 }
