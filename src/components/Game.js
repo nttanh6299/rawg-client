@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 import { setMetacriticColor } from '../utils/helpers';
 import {
   IMAGE_URL,
@@ -10,6 +13,9 @@ import {
 import Loading from './Loading';
 import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
 import CustomLink from './CustomLink';
+
+dayjs.extend(localizedFormat);
+dayjs.extend(relativeTime);
 
 const propTypes = {
   fetchGameIfNeeded: PropTypes.func.isRequired,
@@ -66,6 +72,9 @@ const Game = ({
     ? `${descriptionRaw.substring(0, 220)}...`
     : descriptionRaw;
   const videoId = clip && clip.video;
+  const releasedDate = `${dayjs(released).format('ll')} (${dayjs(
+    released
+  ).fromNow()})`;
 
   const handleCollapsed = () => {
     setCollapsed(prev => !prev);
@@ -97,7 +106,7 @@ const Game = ({
             {alternativeNames.join(', ')}
           </span>
           <h3 className="heading-3">
-            Released Date <p className="game__released"> {released}</p>
+            Released Date <p className="game__released"> {releasedDate}</p>
           </h3>
 
           <ul className="game__actions">
