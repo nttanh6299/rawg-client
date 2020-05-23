@@ -7,8 +7,13 @@ export const changeRoute = route => ({
 });
 
 export const initRouter = paths => dispatch => {
+  window.onpopstate = () => {
+    const { pathname, search } = window.location;
+    const route = parseRoute(paths, pathname, search);
+    dispatch(changeRoute(route));
+  };
+
   const { pathname, search } = window.location;
   const route = parseRoute(paths, pathname, search);
-
   dispatch(changeRoute(route));
 };
