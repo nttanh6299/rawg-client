@@ -1,0 +1,33 @@
+.form {
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+
+  &__form {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    font-size: inherit;
+    border: none;
+    outline: none;
+    background-color: var(--color-grey-dark-1);
+    padding: 1rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    border-radius: 0.4rem;
+  }
+
+  &__submit {
+    color: var(--color-dark);
+    background-color: #fff;
+    border-radius: 0.4rem;
+    text-transform: uppercase;
+    padding: 1rem;
+  }
+}
