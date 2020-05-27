@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Background from './Background';
 import Video from './Video';
 import CustomLink from './CustomLink';
-import { FaPlay, FaHeart } from 'react-icons/fa';
+import { FaPlay } from 'react-icons/fa';
 import { AiTwotoneLike } from 'react-icons/ai';
 import { setMetacriticColor, platformIcon } from '../utils/helpers';
 import { GAME_PATH } from '../constants/urlApi';
@@ -18,7 +18,8 @@ const propTypes = {
     video: PropTypes.string
   }),
   changeRoute: PropTypes.func.isRequired,
-  playFullVideo: PropTypes.func.isRequired
+  playFullVideo: PropTypes.func.isRequired,
+  parentPlatforms: PropTypes.array
 };
 
 const defaultProps = {
@@ -34,7 +35,7 @@ const GameItem = ({
   backgroundImage,
   metacritic,
   clip,
-  parentPlatforms,
+  parentPlatforms = [],
   changeRoute,
   playFullVideo
 }) => {
