@@ -1,19 +1,28 @@
 .icon {
+  box-sizing: content-box;
   width: 1.5rem;
   height: 1.5rem;
   fill: currentColor;
 
   &--play {
-    box-sizing: content-box;
-    width: 2.5rem;
-    height: 2.5rem;
     position: absolute;
     bottom: 1rem;
     left: 1rem;
     display: block;
-    padding: 0.6rem;
-    padding-right: 0.4rem;
-    border-radius: 10rem;
+    padding: 0.8rem;
+    border-radius: 0.4rem;
     background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  &--like {
+    color: var(--color-grey-dark-2);
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      color: var(--color-pink);
+    }
   }
 }

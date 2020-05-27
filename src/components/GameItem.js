@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Background from './Background';
 import Video from './Video';
 import CustomLink from './CustomLink';
-import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
-import { setMetacriticColor } from '../utils/helpers';
+import { FaPlay, FaHeart } from 'react-icons/fa';
+import { AiTwotoneLike } from 'react-icons/ai';
+import { setMetacriticColor, platformIcon } from '../utils/helpers';
 import { GAME_PATH } from '../constants/urlApi';
 
 const propTypes = {
@@ -33,6 +34,7 @@ const GameItem = ({
   backgroundImage,
   metacritic,
   clip,
+  parentPlatforms,
   changeRoute,
   playFullVideo
 }) => {
@@ -56,7 +58,7 @@ const GameItem = ({
       onMouseLeave={handleMouseLeave}
     >
       <Background backgroundImage={backgroundImage} hasVideo={hasVideo}>
-        {hasVideo && <PlayIcon className="icon icon--play" />}
+        {hasVideo && <FaPlay className="icon icon--play" />}
       </Background>
       {showVideo && (
         <Video
@@ -66,19 +68,36 @@ const GameItem = ({
         />
       )}
       <div className="game-item__info">
-        <CustomLink
-          className="heading-2 game-item__name"
-          title={name}
-          active={false}
-          path={GAME_PATH}
-          keys={{ slug }}
-          changeRoute={changeRoute}
-        >
-          {name}
-        </CustomLink>
-        <span className={`game-item__meta ${setMetacriticColor(metacritic)}`}>
-          {!!metacritic ? metacritic : 0}
-        </span>
+        <div className="game-item__info__top">
+          <div className="game-item__platforms">
+            {parentPlatforms.map(({ platform }) => {
+              const Icon = platformIcon(platform.slug);
+              return Icon ? (
+                <Icon
+                  key={platform.id}
+                  style={{ marginRight: '0.6rem' }}
+                  className="icon"
+                />
+              ) : null;
+            })}
+          </div>
+          <span className={`game-item__meta ${setMetacriticColor(metacritic)}`}>
+            {!!metacritic ? metacritic : 0}
+          </span>
+        </div>
+        <div className="game-item__info__bottom">
+          <CustomLink
+            className="heading-1 game-item__name"
+            title={name}
+            active={false}
+            path={GAME_PATH}
+            keys={{ slug }}
+            changeRoute={changeRoute}
+          >
+            {name}
+          </CustomLink>
+          <AiTwotoneLike className="icon icon--like" />
+        </div>
       </div>
     </div>
   );

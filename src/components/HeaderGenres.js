@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import CustomLink from './CustomLink';
 import { GAMES_PATH } from '../constants/urlApi';
+import { IoMdArrowDropdown } from 'react-icons/io';
 
 const propTypes = {
   genres: PropTypes.array,
@@ -23,7 +24,12 @@ const HeaderGenres = ({ genres, genre, changeRoute }) => {
       <div className="header-genres__expanded">
         <span className="header-genres__current-genre">{genre || 'Genre'}</span>
         <span className="header-genres__expanded-icon" onClick={handleClick}>
-          {expanded ? '-' : '+'}
+          <IoMdArrowDropdown
+            style={{
+              transition: '0.2s',
+              transform: `rotate(${expanded ? '180deg' : '0deg'})`
+            }}
+          />
         </span>
       </div>
 

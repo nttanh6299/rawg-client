@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
-import { ReactComponent as SearchIcon } from '../images/SVG/search.svg';
+import { FaSearch } from 'react-icons/fa';
 import { GAMES_PATH } from '../constants/urlApi';
 
 const propTypes = {
@@ -35,7 +35,7 @@ const Header = ({ changeRoute }) => {
       </h1>
       <div className="search-bar">
         <button className="search-bar__button">
-          <SearchIcon className="search-bar__icon" />
+          <FaSearch className="search-bar__icon" />
         </button>
         <input
           type="text"

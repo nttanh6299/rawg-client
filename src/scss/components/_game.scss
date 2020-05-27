@@ -108,12 +108,43 @@
     }
   }
 
+  &__meta {
+    font-size: 2rem;
+    display: inline-block;
+    border: 1px solid currentColor;
+    padding: 0.2rem 1.5rem;
+    border-radius: 0.4rem;
+    margin: 0 0 1rem 0;
+  }
+
+  &__trailer {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    padding: 0.4rem 0.8rem;
+    margin-top: 1rem;
+    border-radius: 0.4rem;
+    transition: 0.2s;
+
+    span {
+      margin-left: 0.5rem;
+    }
+
+    &:hover {
+      background-color: #fff;
+      color: var(--color-dark);
+      cursor: pointer;
+    }
+  }
+
   &__actions {
     list-style-type: none;
     display: flex;
     align-items: center;
     font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    margin-top: 1rem;
 
     @include mq(tablet) {
       justify-content: center;
@@ -121,36 +152,39 @@
   }
 
   &__action {
+    flex: 1;
+    border: 1px solid #fff;
+    border-radius: 0.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s;
+
+    span {
+      margin-left: 0.5rem;
+    }
+
     & + & {
       margin-left: 1rem;
     }
 
-    &--meta {
-      font-size: 2rem;
-      display: block;
-      border: 1px solid currentColor;
-      padding: 0.2rem 1.5rem;
-      border-radius: 0.4rem;
+    &:hover {
+      background-color: #fff;
+      color: var(--color-dark);
+      cursor: pointer;
     }
 
-    &--play {
-      font-size: 1.4rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 1px solid #fff;
-      padding: 0.2rem 0.8rem;
-      border-radius: 0.4rem;
-      transition: 0.2s;
+    &--liked {
+      border: 1px solid var(--color-pink);
+      background-color: var(--color-pink);
+      color: #fff;
+    }
 
-      span {
-        margin-left: 0.5rem;
-      }
-
+    &--like {
       &:hover {
-        background-color: #fff;
-        color: var(--color-dark);
-        cursor: pointer;
+        border: 1px solid var(--color-pink);
+        background-color: var(--color-pink);
+        color: #fff;
       }
     }
   }

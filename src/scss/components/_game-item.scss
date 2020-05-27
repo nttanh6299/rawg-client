@@ -12,27 +12,36 @@
 
   &__info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     padding: 1.5rem 1rem;
     background-color: var(--color-grey-dark-1);
+
+    &__top,
+    &__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__top {
+      margin-bottom: 0.6rem;
+    }
   }
 
   &__name {
     color: #fff;
-    display: block;
     font-weight: 400;
     cursor: pointer;
+    margin-right: 1rem;
   }
 
   &__meta {
     font-size: 1.4rem;
     font-weight: 600;
     display: inline-block;
-    padding: 0 0.8rem;
+    padding: 0 0.5rem;
     color: currentColor;
     border: 1px solid currentColor;
     border-radius: 0.4rem;
-    margin-left: 2rem;
   }
 }

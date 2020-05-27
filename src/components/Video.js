@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
-import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
+import { FaPlay } from 'react-icons/fa';
 
 const propTypes = {
   src: PropTypes.string,
@@ -39,7 +39,7 @@ const Video = ({ src, videoId, playFullVideo }) => {
         className="video__full-frame"
         onClick={playFullVideo.bind(this, videoId)}
       >
-        <PlayIcon className="icon" />
+        <FaPlay className="icon" />
         <span>Full video</span>
       </button>
     </div>

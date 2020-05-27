@@ -11,8 +11,9 @@ import {
   GAMES_PATH
 } from '../constants/urlApi';
 import Loading from './Loading';
-import { ReactComponent as PlayIcon } from '../images/SVG/play.svg';
+import { FaPlay } from 'react-icons/fa';
 import CustomLink from './CustomLink';
+import { AiTwotoneLike, AiOutlinePlusCircle } from 'react-icons/ai';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
@@ -99,6 +100,25 @@ const Game = ({
             className="game__art"
             style={{ backgroundImage: `url(${mediumBackground})` }}
           />
+          {videoId && (
+            <li
+              className="game__trailer"
+              onClick={playFullVideo.bind(this, videoId)}
+            >
+              <FaPlay className="icon" />
+              <span>Play trailer</span>
+            </li>
+          )}
+          <ul className="game__actions">
+            <li className="btn game__action game__action--like">
+              <AiTwotoneLike className="icon" />
+              <span>Like</span>
+            </li>
+            <li className="btn game__action">
+              <AiOutlinePlusCircle className="icon" />
+              <span>Collection</span>
+            </li>
+          </ul>
         </div>
         <div className="game__content">
           <h2 className="game__name">{name}</h2>
@@ -108,27 +128,9 @@ const Game = ({
           <h3 className="heading-3">
             Released Date <p className="game__released"> {releasedDate}</p>
           </h3>
-
-          <ul className="game__actions">
-            <li
-              className={`game__action game__action--meta ${setMetacriticColor(
-                metacritic
-              )}`}
-            >
-              {metacritic || 0}
-            </li>
-            <li className="game__action">Like</li>
-            <li className="game__action">Collection</li>
-            {videoId && (
-              <li
-                className="game__action game__action--play"
-                onClick={playFullVideo.bind(this, videoId)}
-              >
-                <PlayIcon className="icon" />
-                <span>Play trailer</span>
-              </li>
-            )}
-          </ul>
+          <span className={`game__meta ${setMetacriticColor(metacritic)}`}>
+            {metacritic || 0}
+          </span>
           <h3 className="heading-3">
             Genres
             <div className="game__genres">
@@ -204,6 +206,7 @@ const Game = ({
           </h3>
         </div>
       </div>
+      <div className="footer">Power by RAWG</div>
     </div>
   );
 };
