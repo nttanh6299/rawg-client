@@ -15,7 +15,8 @@ const propTypes = {
   collectionKey: PropTypes.string,
   gamesUrl: PropTypes.string,
   videoId: PropTypes.string,
-  playFullVideo: PropTypes.func.isRequired
+  playFullVideo: PropTypes.func.isRequired,
+  windowSize: PropTypes.number.isRequired
 };
 
 const defaultProps = {};
@@ -29,7 +30,8 @@ const Games = ({
   fetchGamesIfNeeded,
   collectionKey,
   gamesUrl,
-  playFullVideo
+  playFullVideo,
+  windowSize
 }) => {
   useEffect(() => {
     fetchGamesIfNeeded(collectionKey, gamesUrl);
@@ -42,6 +44,7 @@ const Games = ({
         games={games}
         changeRoute={changeRoute}
         playFullVideo={playFullVideo}
+        windowSize={windowSize}
       />
       <Loading
         loading={loading}

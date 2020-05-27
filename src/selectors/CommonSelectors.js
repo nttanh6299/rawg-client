@@ -15,5 +15,5 @@ export const getTag = state => {
   return state.router.route.options.tag;
 };
 
-// VIDEO
-export const getVideoId = state => state.video.id;
+// APP
+export const getWindowSize = state => state.app.windowSize;

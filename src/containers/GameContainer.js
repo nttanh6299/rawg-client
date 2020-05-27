@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Game } from '../components';
 import { fetchGameIfNeeded } from '../actions/GameActions';
-import { playFullVideo } from '../actions/VideoActions';
+import { playFullVideo } from '../actions/AppActions';
 import { changeRoute } from '../actions/RouterActions';
 import {
   getGame,

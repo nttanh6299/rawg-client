@@ -48,6 +48,11 @@ body {
 .main {
   display: flex;
   flex-direction: column;
+
+  @include mq($tablet) {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
 }
 
 .heading-1,
@@ -66,4 +71,24 @@ body {
 
 .heading-3 {
   font-size: 1.4rem;
+}
+
+.btn {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: currentColor;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.btn-light {
+  color: var(--color-dark);
+  background-color: #fff;
+}
+
+.btn-ouline-light {
+  border: 1px solid #fff;
 }

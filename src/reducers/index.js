@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import GamesReducer from './GamesReducer';
 import RouterReducer from './RouterReducer';
-import VideoReducer from './VideoReducer';
+import AppReducer from './AppReducer';
 
 export default combineReducers({
   games: GamesReducer,
   router: RouterReducer,
-  video: VideoReducer
+  app: AppReducer
 });

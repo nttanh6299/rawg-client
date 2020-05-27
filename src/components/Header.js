@@ -44,7 +44,10 @@ const Header = ({ changeRoute }) => {
           onKeyPress={handleKeyPress}
         />
       </div>
-      <button className="header__login">Login</button>
+      <button className="btn u-uppercase" style={{ marginRight: '1rem' }}>
+        Login
+      </button>
+      <button className="btn u-uppercase">Sign up</button>
     </header>
   );
 };

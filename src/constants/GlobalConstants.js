@@ -95,3 +95,12 @@ export const GENRES = [
     to: 'card'
   }
 ];
+
+export const WINDOW_SIZE = {
+  tablet: 768,
+  laptop: 992,
+  desktop: 1200,
+  all: 0
+};
+
+export const WINDOW_RESIZE_DEBOUNCE = 400;

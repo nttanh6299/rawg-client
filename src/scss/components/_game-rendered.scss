@@ -1,18 +1,7 @@
 .games-rendered {
+  overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(4, minmax(50px, 1fr));
+  grid-template-columns: repeat(4, minmax(30rem, 50rem));
   column-gap: 2rem;
-  row-gap: 2rem;
-
-  @include mq($desktop) {
-    grid-template-columns: repeat(3, minmax(50px, 1fr));
-  }
-
-  @include mq($laptop) {
-    grid-template-columns: repeat(2, minmax(50px, 1fr));
-  }
-
-  @include mq($tablet) {
-    grid-template-columns: repeat(1, minmax(50px, 1fr));
-  }
+  justify-content: center;
 }
