@@ -6,7 +6,7 @@ import { compileRoute } from '../utils/RouterUtils';
 const propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  active: PropTypes.bool.isRequired,
+  active: PropTypes.bool,
   path: PropTypes.string,
   options: PropTypes.object,
   keys: PropTypes.object,
@@ -15,6 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+  active: false,
   className: '',
   onClick: () => {},
   path: '',

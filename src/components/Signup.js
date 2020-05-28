@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import CustomTextField from './CustomTextField';
 import { AiOutlineLoading } from 'react-icons/ai';
+import withAuthenticated from './HOCs/withAuthenticated';
 
 const initialValues = {
   email: '',
@@ -36,14 +37,22 @@ const validationSchema = yup.object({
     })
 });
 
-const Signup = () => {
-  const handleSubmit = (data, { setSubmitting, resetForm }) => {
+const Signup = ({ signUp }) => {
+  const handleSubmit = async (data, actions) => {
+    const { setSubmitting, setFieldError } = actions;
+    const { email, password, username } = data;
+
     setSubmitting(true);
-    setTimeout(() => {
-      console.log(data);
+    try {
+      const error = await signUp(email, username, password);
+      if (error) {
+        setFieldError('email', error);
+      }
+    } catch (error) {
+      console.error(error.code);
+      console.error(error.message);
       setSubmitting(false);
-      resetForm();
-    }, 4000);
+    }
   };
 
   return (
@@ -97,4 +106,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default withAuthenticated(Signup);

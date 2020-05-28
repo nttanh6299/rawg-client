@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
 import { GAMES_PATH } from '../constants/urlApi';
+import CustomLink from './CustomLink';
 
 const propTypes = {
   changeRoute: PropTypes.func.isRequired
@@ -10,10 +11,9 @@ const propTypes = {
 
 const defaultProps = {};
 
-const Header = ({ changeRoute }) => {
-  const handleClick = () => {
-    changeRoute({ path: GAMES_PATH, keys: {}, options: {} });
-    history.push(GAMES_PATH);
+const Header = ({ changeRoute, logOut, currentUser }) => {
+  const handleLogOut = async () => {
+    await logOut();
   };
 
   const handleKeyPress = e => {
@@ -30,8 +30,10 @@ const Header = ({ changeRoute }) => {
 
   return (
     <header className="header">
-      <h1 className="header__logo" onClick={handleClick}>
-        RAWGC
+      <h1 className="header__logo">
+        <CustomLink path={GAMES_PATH} changeRoute={changeRoute}>
+          RAWGC
+        </CustomLink>
       </h1>
       <div className="search-bar">
         <button className="search-bar__button">
@@ -44,10 +46,29 @@ const Header = ({ changeRoute }) => {
           onKeyPress={handleKeyPress}
         />
       </div>
-      <button className="btn u-uppercase" style={{ marginRight: '1rem' }}>
-        Login
-      </button>
-      <button className="btn u-uppercase">Sign up</button>
+      {!currentUser ? (
+        <React.Fragment>
+          <CustomLink
+            path={'/login'}
+            changeRoute={changeRoute}
+            className="btn u-uppercase"
+            style={{ marginRight: '1rem' }}
+          >
+            Login
+          </CustomLink>
+          <CustomLink
+            path={'/signup'}
+            changeRoute={changeRoute}
+            className="btn u-uppercase"
+          >
+            Sign up
+          </CustomLink>
+        </React.Fragment>
+      ) : (
+        <span onClick={handleLogOut} className="btn u-uppercase">
+          Logout
+        </span>
+      )}
     </header>
   );
 };

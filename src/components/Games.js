@@ -34,7 +34,7 @@ const Games = ({
   windowSize
 }) => {
   useEffect(() => {
-    fetchGamesIfNeeded(collectionKey, gamesUrl);
+    //fetchGamesIfNeeded(collectionKey, gamesUrl);
   }, [fetchGamesIfNeeded, collectionKey, gamesUrl]);
 
   return (

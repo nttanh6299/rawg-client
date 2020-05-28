@@ -6,6 +6,7 @@ import { routes } from './routes';
 import { PublicRoute } from './layouts';
 import { initRouter } from './actions/RouterActions';
 import { closeFullVideo, windowResize } from './actions/AppActions';
+import { authen } from './actions/UserActions';
 import HeaderContainer from './containers/HeaderContainer';
 import { INDEX_PATH, GAMES_PATH, GAME_PATH } from './constants/urlApi';
 import { FullVideo } from './components';
@@ -21,11 +22,14 @@ function App({
   closeFullVideo,
   videoId,
   windowResize,
-  windowSize
+  windowSize,
+  authen
 }) {
   useEffect(() => {
     initRouter(paths);
-  }, [initRouter]);
+    const subscriber = authen();
+    return subscriber;
+  }, [initRouter, authen]);
 
   useEffect(() => {
     let timeout = null;
@@ -110,5 +114,6 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   initRouter,
   closeFullVideo,
-  windowResize
+  windowResize,
+  authen
 })(App);

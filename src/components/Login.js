@@ -4,10 +4,12 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import CustomTextField from './CustomTextField';
 import { AiOutlineLoading } from 'react-icons/ai';
+import withAuthenticated from './HOCs/withAuthenticated';
 
 const initialValues = {
   email: '',
-  password: ''
+  password: '',
+  failed: ''
 };
 
 const validationSchema = yup.object({
@@ -15,14 +17,19 @@ const validationSchema = yup.object({
   password: yup.string().required('This field is required')
 });
 
-const Login = () => {
-  const handleSubmit = (data, { setSubmitting, resetForm }) => {
+const Login = ({ login }) => {
+  const handleSubmit = async (data, actions) => {
+    const { setSubmitting, setFieldError } = actions;
+    const { email, password } = data;
+
     setSubmitting(true);
-    setTimeout(() => {
-      console.log(data);
+    try {
+      await login(email, password);
+    } catch (error) {
+      console.log(error);
+      setFieldError('failed', 'Unable to log in with provided credentials');
       setSubmitting(false);
-      resetForm();
-    }, 4000);
+    }
   };
 
   return (
@@ -33,7 +40,7 @@ const Login = () => {
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, errors }) => (
           <Form className="form__form">
             <CustomTextField
               type="email"
@@ -47,6 +54,18 @@ const Login = () => {
               className="form__input"
               placeholder="Password"
             />
+            {errors && errors.failed && (
+              <div
+                style={{
+                  color: '#f00',
+                  fontSize: '1.4rem',
+                  fontWeight: '100',
+                  marginBottom: '1rem'
+                }}
+              >
+                {errors.failed}
+              </div>
+            )}
             <button
               type={isSubmitting ? 'button' : 'submit'}
               className="btn form__submit"
@@ -67,4 +86,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withAuthenticated(Login);
