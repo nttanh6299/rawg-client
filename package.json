@@ -9,6 +9,7 @@
     "axios": "^0.19.2",
     "camelize": "^1.0.0",
     "dayjs": "^1.8.27",
+    "formik": "^2.1.4",
     "node-sass": "^4.14.0",
     "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
@@ -20,7 +21,8 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "reselect": "^4.0.0"
+    "reselect": "^4.0.0",
+    "yup": "^0.29.1"
   },
   "scripts": {
     "start": "react-scripts start",

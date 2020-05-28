@@ -13,6 +13,7 @@
   }
 
   &__input {
+    width: 100%;
     font-size: inherit;
     border: none;
     outline: none;
@@ -29,5 +30,19 @@
     border-radius: 0.4rem;
     text-transform: uppercase;
     padding: 1rem;
+  }
+
+  &__loading {
+    margin-right: 1rem;
+    animation: formLoading 1s infinite linear;
+
+    @keyframes formLoading {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
