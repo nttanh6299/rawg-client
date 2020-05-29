@@ -9,7 +9,13 @@ const withAuthenticated = InnerComponent => {
     } else if (isAuthenticated && currentUser) {
       return <Redirect to="/" />;
     }
-    return <InnerComponent {...props} />;
+    return (
+      <InnerComponent
+        currentUser={currentUser}
+        isAuthenticated={isAuthenticated}
+        {...props}
+      />
+    );
   };
 
   return Authenticated;

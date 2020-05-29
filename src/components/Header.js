@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
+import { IoIosLogOut } from 'react-icons/io';
 import { GAMES_PATH } from '../constants/urlApi';
 import CustomLink from './CustomLink';
 
@@ -12,6 +13,8 @@ const propTypes = {
 const defaultProps = {};
 
 const Header = ({ changeRoute, logOut, currentUser }) => {
+  const { displayName, photoURL } = currentUser || {};
+
   const handleLogOut = async () => {
     await logOut();
   };
@@ -65,9 +68,30 @@ const Header = ({ changeRoute, logOut, currentUser }) => {
           </CustomLink>
         </React.Fragment>
       ) : (
-        <span onClick={handleLogOut} className="btn u-uppercase">
-          Logout
-        </span>
+        <div className="header__user">
+          <div className="header__user__info">
+            <CustomLink
+              path={'/profile'}
+              changeRoute={changeRoute}
+              className="btn u-uppercase"
+              style={{ display: 'flex', alignItems: 'center' }}
+            >
+              <div
+                className="header__user__avatar"
+                style={{ backgroundImage: `url(${photoURL})` }}
+              >
+                {displayName[0] || ''}
+              </div>
+              <span className="header__user__username">{displayName}</span>
+            </CustomLink>
+          </div>
+          <IoIosLogOut
+            onClick={handleLogOut}
+            title="Logout"
+            className="icon icon--logout"
+            cursor="pointer"
+          />
+        </div>
       )}
     </header>
   );
