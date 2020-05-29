@@ -1,0 +1,14 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  height: calc(100vh - #{$header-height}* 3);
+
+  &__title {
+    margin-top: -1rem;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+}
