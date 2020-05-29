@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { history, preventClick } from '../utils/helpers';
+import { Link } from 'react-router-dom';
+import { preventClick } from '../utils/helpers';
 import { compileRoute } from '../utils/RouterUtils';
 
 const propTypes = {
@@ -32,23 +33,26 @@ const CustomLink = ({
   keys,
   changeRoute,
   onClick,
+  style,
   ...props
 }) => {
+  const route = { path, keys, options };
+
   const handleClick = () => {
-    const route = { path, keys, options };
     onClick();
     changeRoute(route);
-    history.push(compileRoute(route));
   };
 
   return (
-    <span
+    <Link
+      style={{ ...style, textDecoration: 'none' }}
+      {...props}
+      to={compileRoute(route)}
       onClick={!active ? handleClick : preventClick}
       className={className}
-      {...props}
     >
       {children}
-    </span>
+    </Link>
   );
 };
 
