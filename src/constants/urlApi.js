@@ -11,3 +11,4 @@ export const LIGHTWEIGHT_IMAGE_URL = {
 export const INDEX_PATH = '/';
 export const GAMES_PATH = '/games';
 export const GAME_PATH = '/games/:slug';
+export const USER_PATH = '/@:username';

@@ -5,3 +5,5 @@ export { default as Loading } from './Loading';
 export { default as FullVideo } from './FullVideo';
 export { default as Login } from './Login';
 export { default as Signup } from './Signup';
+export { default as User } from './User';
+export { default as UserSettings } from './UserSettings';

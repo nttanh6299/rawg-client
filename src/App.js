@@ -8,14 +8,19 @@ import { initRouter } from './actions/RouterActions';
 import { closeFullVideo, windowResize } from './actions/AppActions';
 import { authen } from './actions/UserActions';
 import HeaderContainer from './containers/HeaderContainer';
-import { INDEX_PATH, GAMES_PATH, GAME_PATH } from './constants/urlApi';
+import {
+  INDEX_PATH,
+  GAMES_PATH,
+  GAME_PATH,
+  USER_PATH
+} from './constants/urlApi';
 import { FullVideo } from './components';
 import {
   WINDOW_SIZE,
   WINDOW_RESIZE_DEBOUNCE
 } from './constants/GlobalConstants';
 
-const paths = [INDEX_PATH, GAMES_PATH, GAME_PATH];
+const paths = [INDEX_PATH, GAMES_PATH, GAME_PATH, USER_PATH];
 
 function App({
   initRouter,
