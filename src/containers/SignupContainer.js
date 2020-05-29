@@ -4,9 +4,8 @@ import { signUp } from '../actions/UserActions';
 
 const mapDispatchToProps = state => {
   return {
-    ...state.user,
-    signUp
+    ...state.user
   };
 };
 
-export default connect(mapDispatchToProps)(Signup);
+export default connect(mapDispatchToProps, { signUp })(Signup);

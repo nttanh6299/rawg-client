@@ -21,7 +21,8 @@ const validationSchema = yup.object({
   username: yup
     .string()
     .required('This field is required')
-    .min(6, 'This field min 6 characters'),
+    .min(6, 'This field min 6 characters')
+    .max(15, 'This field max 15 characters'),
   password: yup
     .string()
     .required('This field is required')

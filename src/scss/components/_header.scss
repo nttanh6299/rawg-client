@@ -45,6 +45,10 @@
       margin-left: 0.6rem;
       font-size: 1.6rem;
       font-weight: 400;
+
+      @include mq($tablet) {
+        display: none;
+      }
     }
   }
 }

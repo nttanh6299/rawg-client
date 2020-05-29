@@ -73,14 +73,14 @@ const Header = ({ changeRoute, logOut, currentUser }) => {
             <CustomLink
               path={'/profile'}
               changeRoute={changeRoute}
-              className="btn u-uppercase"
+              className="btn"
               style={{ display: 'flex', alignItems: 'center' }}
             >
               <div
                 className="header__user__avatar"
                 style={{ backgroundImage: `url(${photoURL})` }}
               >
-                {displayName[0] || ''}
+                {displayName ? displayName[0].toUpperCase() : ''}
               </div>
               <span className="header__user__username">{displayName}</span>
             </CustomLink>

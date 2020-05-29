@@ -1,4 +1,8 @@
-import { LOGIN_SUCCESS, CLEAR_USER } from '../constants/ActionTypes';
+import {
+  LOGIN_SUCCESS,
+  CLEAR_USER,
+  UPDATE_USER_USERNAME
+} from '../constants/ActionTypes';
 
 const initialState = {
   currentUser: null,
@@ -18,6 +22,11 @@ export default function user(state = initialState, { type, payload }) {
         ...state,
         currentUser: null,
         isAuthenticated: true
+      };
+    case UPDATE_USER_USERNAME:
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, displayName: payload.username }
       };
     default:
       return state;
