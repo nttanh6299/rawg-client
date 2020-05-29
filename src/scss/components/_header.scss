@@ -15,6 +15,10 @@
     letter-spacing: 0.4rem;
     cursor: pointer;
 
+    & > * {
+      color: #fff;
+    }
+
     @include mq($tablet) {
       margin-right: auto;
     }
