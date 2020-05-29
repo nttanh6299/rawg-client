@@ -4,7 +4,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import CustomTextField from './CustomTextField';
 import { AiOutlineLoading } from 'react-icons/ai';
-import withAuthenticated from './HOCs/withAuthenticated';
+import withLogged from './HOCs/withLogged';
 
 const initialValues = {
   email: '',
@@ -107,4 +107,4 @@ const Signup = ({ signUp }) => {
   );
 };
 
-export default withAuthenticated(Signup);
+export default withLogged(Signup);
