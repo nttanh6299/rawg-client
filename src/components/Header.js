@@ -14,7 +14,6 @@ const defaultProps = {};
 
 const Header = ({ changeRoute, logOut, currentUser }) => {
   const { displayName, photoURL } = currentUser || {};
-
   const handleLogOut = async () => {
     await logOut();
   };
