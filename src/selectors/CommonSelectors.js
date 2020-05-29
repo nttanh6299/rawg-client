@@ -17,3 +17,6 @@ export const getTag = state => {
 
 // APP
 export const getWindowSize = state => state.app.windowSize;
+
+// USER
+export const getUser = state => state.user;
