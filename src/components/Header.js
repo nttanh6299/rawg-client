@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { history } from '../utils/helpers';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosLogOut } from 'react-icons/io';
-import { GAMES_PATH } from '../constants/urlApi';
+import { GAMES_PATH, USER_PATH } from '../constants/urlApi';
 import CustomLink from './CustomLink';
 
 const propTypes = {
@@ -70,7 +70,8 @@ const Header = ({ changeRoute, logOut, currentUser }) => {
         <div className="header__user">
           <div className="header__user__info">
             <CustomLink
-              path={'/profile'}
+              path={USER_PATH}
+              keys={{ username: displayName }}
               changeRoute={changeRoute}
               className="btn"
               style={{ display: 'flex', alignItems: 'center' }}
