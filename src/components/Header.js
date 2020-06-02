@@ -7,13 +7,16 @@ import { GAMES_PATH, USER_PATH } from '../constants/urlApi';
 import CustomLink from './CustomLink';
 
 const propTypes = {
-  changeRoute: PropTypes.func.isRequired
+  changeRoute: PropTypes.func.isRequired,
+  logOut: PropTypes.func.isRequired,
+  currentUser: PropTypes.object
 };
 
 const defaultProps = {};
 
 const Header = ({ changeRoute, logOut, currentUser }) => {
   const { displayName, photoURL } = currentUser || {};
+
   const handleLogOut = async () => {
     await logOut();
   };
@@ -71,7 +74,7 @@ const Header = ({ changeRoute, logOut, currentUser }) => {
           <div className="header__user__info">
             <CustomLink
               path={USER_PATH}
-              keys={{ username: displayName }}
+              keys={{ username: displayName || '#' }}
               changeRoute={changeRoute}
               className="btn"
               style={{ display: 'flex', alignItems: 'center' }}
