@@ -14,6 +14,7 @@ import Loading from './Loading';
 import { FaPlay } from 'react-icons/fa';
 import CustomLink from './CustomLink';
 import { AiTwotoneLike, AiOutlinePlusCircle } from 'react-icons/ai';
+import { history } from '../utils/helpers';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
@@ -25,7 +26,10 @@ const propTypes = {
   game: PropTypes.object,
   screenshots: PropTypes.array,
   playFullVideo: PropTypes.func.isRequired,
-  changeRoute: PropTypes.func.isRequired
+  changeRoute: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  likes: PropTypes.object,
+  toggleLike: PropTypes.func.isRequired
 };
 
 const defaultProps = {
@@ -39,7 +43,10 @@ const Game = ({
   game,
   screenshots,
   playFullVideo,
-  changeRoute
+  changeRoute,
+  isAuthenticated,
+  likes,
+  toggleLike
 }) => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -52,6 +59,7 @@ const Game = ({
   }
 
   const {
+    id,
     backgroundImage,
     name,
     released,
@@ -76,9 +84,19 @@ const Game = ({
   const releasedDate = `${dayjs(released).format('ll')} (${dayjs(
     released
   ).fromNow()})`;
+  const liked = likes[id];
 
   const handleCollapsed = () => {
     setCollapsed(prev => !prev);
+  };
+
+  const handleToggleLike = () => {
+    if (isAuthenticated) {
+      toggleLike(id, liked);
+    } else {
+      changeRoute({ path: '/login', keys: {}, options: {} });
+      history.push('/login');
+    }
   };
 
   return (
@@ -110,7 +128,12 @@ const Game = ({
             </li>
           )}
           <ul className="game__actions">
-            <li className="btn game__action game__action--like">
+            <li
+              onClick={handleToggleLike}
+              className={`btn game__action game__action--like ${
+                liked ? 'game__action--liked' : ''
+              }`}
+            >
               <AiTwotoneLike className="icon" />
               <span>Like</span>
             </li>
@@ -193,6 +216,7 @@ const Game = ({
             <div className="game__tags">
               {tags.map(tag => (
                 <CustomLink
+                  className="game__tag"
                   key={tag.id}
                   active={false}
                   path={GAMES_PATH}
