@@ -16,7 +16,10 @@ const propTypes = {
   gamesUrl: PropTypes.string,
   videoId: PropTypes.string,
   playFullVideo: PropTypes.func.isRequired,
-  windowSize: PropTypes.number.isRequired
+  windowSize: PropTypes.number.isRequired,
+  toggleLike: PropTypes.func.isRequired,
+  likes: PropTypes.object,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const defaultProps = {};
@@ -31,10 +34,13 @@ const Games = ({
   collectionKey,
   gamesUrl,
   playFullVideo,
-  windowSize
+  windowSize,
+  toggleLike,
+  likes,
+  isAuthenticated
 }) => {
   useEffect(() => {
-    //fetchGamesIfNeeded(collectionKey, gamesUrl);
+    fetchGamesIfNeeded(collectionKey, gamesUrl);
   }, [fetchGamesIfNeeded, collectionKey, gamesUrl]);
 
   return (
@@ -45,6 +51,9 @@ const Games = ({
         changeRoute={changeRoute}
         playFullVideo={playFullVideo}
         windowSize={windowSize}
+        toggleLike={toggleLike}
+        likes={likes}
+        isAuthenticated={isAuthenticated}
       />
       <Loading
         loading={loading}

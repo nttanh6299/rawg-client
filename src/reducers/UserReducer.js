@@ -1,12 +1,15 @@
 import {
   LOGIN_SUCCESS,
   CLEAR_USER,
-  UPDATE_USER_USERNAME
+  UPDATE_USER_USERNAME,
+  FETCH_USER_LIKES_SUCCESS,
+  TOGGLE_LIKE
 } from '../constants/ActionTypes';
 
 const initialState = {
   currentUser: null,
-  loadedAuth: false
+  loadedAuth: false,
+  likes: {}
 };
 
 export default function user(state = initialState, { type, payload }) {
@@ -27,6 +30,16 @@ export default function user(state = initialState, { type, payload }) {
       return {
         ...state,
         currentUser: { ...state.currentUser, displayName: payload.username }
+      };
+    case FETCH_USER_LIKES_SUCCESS:
+      return {
+        ...state,
+        likes: { ...payload.likes }
+      };
+    case TOGGLE_LIKE:
+      return {
+        ...state,
+        likes: { ...state.likes, [payload.id]: payload.liked }
       };
     default:
       return state;

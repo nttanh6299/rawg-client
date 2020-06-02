@@ -20,3 +20,7 @@ export const getWindowSize = state => state.app.windowSize;
 
 // USER
 export const getUser = state => state.user;
+
+export const getLikes = state => state.user.likes;
+
+export const getIsAuthenticated = state => !!state.user.currentUser;

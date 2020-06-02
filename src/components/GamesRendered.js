@@ -7,7 +7,10 @@ const propTypes = {
   games: PropTypes.array,
   changeRoute: PropTypes.func.isRequired,
   playFullVideo: PropTypes.func.isRequired,
-  windowSize: PropTypes.number.isRequired
+  windowSize: PropTypes.number.isRequired,
+  toggleLike: PropTypes.func.isRequired,
+  likes: PropTypes.object,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
@@ -29,7 +32,15 @@ function setCol(windowSize) {
   }
 }
 
-const GameRendered = ({ games, changeRoute, playFullVideo, windowSize }) => {
+const GameRendered = ({
+  games,
+  changeRoute,
+  playFullVideo,
+  windowSize,
+  toggleLike,
+  likes,
+  isAuthenticated
+}) => {
   const [gamesRendered, setGameRendered] = useState([]);
   const [colRendered, setColRendered] = useState(setCol(windowSize));
 
@@ -72,6 +83,9 @@ const GameRendered = ({ games, changeRoute, playFullVideo, windowSize }) => {
                   {...game}
                   changeRoute={changeRoute}
                   playFullVideo={playFullVideo}
+                  toggleLike={toggleLike}
+                  liked={!!likes[game.id]}
+                  isAuthenticated={isAuthenticated}
                 />
               );
             })}

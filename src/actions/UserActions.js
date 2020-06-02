@@ -2,8 +2,11 @@ import firebase from '../firebase';
 import {
   LOGIN_SUCCESS,
   CLEAR_USER,
-  UPDATE_USER_USERNAME
+  UPDATE_USER_USERNAME,
+  FETCH_USER_LIKES_SUCCESS,
+  TOGGLE_LIKE
 } from '../constants/ActionTypes';
+import { getUser } from '../selectors/CommonSelectors';
 
 const loginSuccess = user => ({ type: LOGIN_SUCCESS, payload: { user } });
 
@@ -12,6 +15,16 @@ const clearUser = () => ({ type: CLEAR_USER });
 const updateUsername = username => ({
   type: UPDATE_USER_USERNAME,
   payload: { username }
+});
+
+const fetchUserLikesSuccess = likes => ({
+  type: FETCH_USER_LIKES_SUCCESS,
+  payload: { likes }
+});
+
+const userToggleLike = (id, liked) => ({
+  type: TOGGLE_LIKE,
+  payload: { id, liked }
 });
 
 export const login = async (email, password) => {
@@ -48,8 +61,27 @@ export const authen = () => dispatch => {
   return firebase.auth.onAuthStateChanged(user => {
     if (user) {
       dispatch(loginSuccess(user));
+      fetchUserLikes(user.email)
+        .then(res => dispatch(fetchUserLikesSuccess(res.data())))
+        .catch(console.error);
     } else {
       dispatch(clearUser());
     }
   });
+};
+
+export const fetchUserLikes = email => {
+  return firebase.db.collection('likes').doc(email).get();
+};
+
+export const toggleLike = (id, liked) => (dispatch, getState) => {
+  const state = getState();
+  const user = getUser(state);
+  const { email } = user.currentUser;
+  const docRef = firebase.db.collection('likes').doc(email);
+
+  docRef
+    .set({ [id]: !liked }, { merge: true })
+    .then(() => dispatch(userToggleLike(id, !liked)))
+    .catch(console.error);
 };

@@ -7,6 +7,7 @@ import { FaPlay } from 'react-icons/fa';
 import { AiTwotoneLike } from 'react-icons/ai';
 import { setMetacriticColor, platformIcon } from '../utils/helpers';
 import { GAME_PATH } from '../constants/urlApi';
+import { history } from '../utils/helpers';
 
 const propTypes = {
   name: PropTypes.string.isRequired,
@@ -19,25 +20,33 @@ const propTypes = {
   }),
   changeRoute: PropTypes.func.isRequired,
   playFullVideo: PropTypes.func.isRequired,
-  parentPlatforms: PropTypes.array
+  parentPlatforms: PropTypes.array,
+  toggleLike: PropTypes.func.isRequired,
+  liked: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
   clip: {
     clip: '',
     video: ''
-  }
+  },
+  parentPlatforms: []
 };
 
 const GameItem = ({
+  id,
   name,
   slug,
   backgroundImage,
   metacritic,
   clip,
-  parentPlatforms = [],
+  parentPlatforms,
   changeRoute,
-  playFullVideo
+  playFullVideo,
+  toggleLike,
+  liked,
+  isAuthenticated
 }) => {
   const [hover, setHover] = useState(false);
 
@@ -47,6 +56,15 @@ const GameItem = ({
 
   const handleMouseLeave = e => {
     setHover(false);
+  };
+
+  const handleToggleLike = e => {
+    if (isAuthenticated) {
+      toggleLike(id, liked);
+    } else {
+      changeRoute({ path: '/login', keys: {}, options: {} });
+      history.push('/login');
+    }
   };
 
   const hasVideo = !!clip && !!clip.clip;
@@ -97,7 +115,10 @@ const GameItem = ({
           >
             {name}
           </CustomLink>
-          <AiTwotoneLike className="icon icon--like" />
+          <AiTwotoneLike
+            onClick={handleToggleLike}
+            className={`icon icon--like ${liked ? 'icon--liked' : ''}`}
+          />
         </div>
       </div>
     </div>

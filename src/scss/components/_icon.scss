@@ -16,14 +16,18 @@
 
   &--like {
     color: var(--color-grey-dark-2);
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     cursor: pointer;
-    transition: 0.2s;
 
     &:hover {
+      transition: 0.2s;
       color: var(--color-pink);
     }
+  }
+
+  &--liked {
+    color: var(--color-pink);
   }
 
   &--logout {
