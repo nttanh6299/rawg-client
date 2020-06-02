@@ -3,16 +3,16 @@ import { Redirect } from 'react-router-dom';
 import Loading from '../Loading';
 
 const withLogged = (InnerComponent, redirectTo = '/') => {
-  const Logged = ({ currentUser, isAuthenticated, ...props }) => {
-    if (!isAuthenticated) {
+  const Logged = ({ currentUser, loadedAuth, ...props }) => {
+    if (!loadedAuth) {
       return <Loading loading={true} className="u-text-center" />;
-    } else if (isAuthenticated && currentUser) {
+    } else if (loadedAuth && currentUser) {
       return <Redirect to={redirectTo} />;
     }
     return (
       <InnerComponent
         currentUser={currentUser}
-        isAuthenticated={isAuthenticated}
+        loadedAuth={loadedAuth}
         {...props}
       />
     );

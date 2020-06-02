@@ -6,7 +6,7 @@ import {
 
 const initialState = {
   currentUser: null,
-  isAuthenticated: false
+  loadedAuth: false
 };
 
 export default function user(state = initialState, { type, payload }) {
@@ -15,13 +15,13 @@ export default function user(state = initialState, { type, payload }) {
       return {
         ...state,
         currentUser: payload.user,
-        isAuthenticated: true
+        loadedAuth: true
       };
     case CLEAR_USER:
       return {
         ...state,
         currentUser: null,
-        isAuthenticated: true
+        loadedAuth: true
       };
     case UPDATE_USER_USERNAME:
       return {
