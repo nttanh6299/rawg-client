@@ -1,0 +1,87 @@
+.user {
+  margin: 3rem 6rem;
+  display: flex;
+  flex-direction: column;
+
+  @include mq($tablet) {
+    margin: 3rem 0;
+    align-items: center;
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mq($tablet) {
+      flex-direction: column;
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+
+    @include mq($tablet) {
+      flex-direction: column-reverse;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__photo {
+    background-color: #fff;
+    width: 12rem;
+    height: 12rem;
+    color: #000;
+    font-size: 4rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__username {
+    font-size: 5rem;
+    margin-right: 2rem;
+
+    @include mq($tablet) {
+      margin-right: 0;
+    }
+  }
+
+  &__settings {
+    font-size: 1.6rem;
+    background-color: #fff;
+    color: #000;
+    border-radius: 0.4rem;
+    padding: 1rem 2rem;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+  }
+
+  &__tab {
+    font-size: 2rem;
+    color: var(--color-grey-dark-3);
+    border-bottom: 2px solid transparent;
+
+    & + & {
+      margin-left: 1.4rem;
+    }
+
+    &:hover {
+      border-bottom: 2px solid #fff;
+      cursor: pointer;
+    }
+
+    &--active {
+      color: #fff;
+      border-bottom: 2px solid #fff;
+    }
+  }
+}

@@ -104,3 +104,14 @@ export const WINDOW_SIZE = {
 };
 
 export const WINDOW_RESIZE_DEBOUNCE = 400;
+
+export const USER_TABS = [
+  {
+    key: '',
+    label: 'Overview'
+  },
+  {
+    key: 'likes',
+    label: 'Games You Like'
+  }
+];

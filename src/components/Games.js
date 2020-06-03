@@ -40,7 +40,7 @@ const Games = ({
   isAuthenticated
 }) => {
   useEffect(() => {
-    fetchGamesIfNeeded(collectionKey, gamesUrl);
+    //fetchGamesIfNeeded(collectionKey, gamesUrl);
   }, [fetchGamesIfNeeded, collectionKey, gamesUrl]);
 
   return (
