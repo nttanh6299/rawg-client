@@ -92,7 +92,7 @@ const Game = ({
 
   const handleToggleLike = () => {
     if (isAuthenticated) {
-      toggleLike(id, liked);
+      toggleLike(id, !liked ? game : null);
     } else {
       changeRoute({ path: '/login', keys: {}, options: {} });
       history.push('/login');
