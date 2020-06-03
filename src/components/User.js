@@ -40,6 +40,7 @@ const User = ({
   const { uid, displayName, photoURL } = visitedUserProfile || {};
 
   useEffect(() => {
+    setCurrentTab('');
     if (username) {
       fetchUser(username);
     }

@@ -57,6 +57,16 @@
     color: #000;
     border-radius: 0.4rem;
     padding: 1rem 2rem;
+    animation: settings_opacity 0.2s;
+
+    @keyframes settings_opacity {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   }
 
   &__tabs {

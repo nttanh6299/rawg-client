@@ -1,4 +1,7 @@
-import { FETCH_VISITED_USER_SUCCESS } from '../constants/ActionTypes';
+import {
+  FETCH_VISITED_USER_SUCCESS,
+  FETCH_VISITED_USER_REQUEST
+} from '../constants/ActionTypes';
 
 const initialState = {
   loadingUserProfile: true,
@@ -7,6 +10,10 @@ const initialState = {
 
 function profileReducer(state = initialState, { type, payload }) {
   switch (type) {
+    case FETCH_VISITED_USER_REQUEST:
+      return {
+        ...initialState
+      };
     case FETCH_VISITED_USER_SUCCESS:
       return {
         ...state,

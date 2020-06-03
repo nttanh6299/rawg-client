@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import GamesRendered from './GamesRendered';
+import Loading from './Loading';
 
 const propTypes = {
   uid: PropTypes.string.isRequired,
@@ -26,22 +27,28 @@ const UserLikesTab = ({
   likes
 }) => {
   const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchGamesUserLike = async () => {
+      setLoading(true);
       const res = await fetchUserLikes(uid);
       const data = res.data();
       if (data) {
-        const gameArr = Object.keys(data).reduce(
-          (arr, key) => [...arr, data[key]],
-          []
-        );
+        const gameArr = Object.keys(data)
+          .filter(key => !!data[key])
+          .reduce((arr, key) => [...arr, data[key]], []);
         setGames(gameArr);
       }
+      setLoading(false);
     };
 
     fetchGamesUserLike();
   }, [uid, fetchUserLikes]);
+
+  if (loading) {
+    return <Loading loading={true} className="u-text-center" />;
+  }
 
   return (
     <div className="user-likes">

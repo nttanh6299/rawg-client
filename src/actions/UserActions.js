@@ -5,7 +5,8 @@ import {
   UPDATE_USER_USERNAME,
   FETCH_USER_LIKES_SUCCESS,
   TOGGLE_LIKE,
-  FETCH_VISITED_USER_SUCCESS
+  FETCH_VISITED_USER_SUCCESS,
+  FETCH_VISITED_USER_REQUEST
 } from '../constants/ActionTypes';
 import { getUser } from '../selectors/CommonSelectors';
 
@@ -28,7 +29,9 @@ const userToggleLike = (id, liked) => ({
   payload: { id, liked }
 });
 
-const fetchUserSuccess = user => ({
+const fetchVisitedUserRequest = () => ({ type: FETCH_VISITED_USER_REQUEST });
+
+const fetchVisitedUserSuccess = user => ({
   type: FETCH_VISITED_USER_SUCCESS,
   payload: { user }
 });
@@ -108,11 +111,12 @@ export const toggleLike = (id, game) => (dispatch, getState) => {
 
 export const fetchUser = username => async dispatch => {
   try {
+    dispatch(fetchVisitedUserRequest());
     const fetchedUser = await firebase.db
       .collection('users')
       .doc(username)
       .get();
-    dispatch(fetchUserSuccess(fetchedUser.data()));
+    dispatch(fetchVisitedUserSuccess(fetchedUser.data()));
   } catch (err) {
     console.error(err);
   }
