@@ -10,38 +10,26 @@ import { GAME_PATH } from '../constants/urlApi';
 import { history } from '../utils/helpers';
 
 const propTypes = {
-  name: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string,
-  metacritic: PropTypes.number,
-  clip: PropTypes.shape({
-    clip: PropTypes.string,
-    video: PropTypes.string
-  }),
+  game: PropTypes.object,
   changeRoute: PropTypes.func.isRequired,
   playFullVideo: PropTypes.func.isRequired,
-  parentPlatforms: PropTypes.array,
   toggleLike: PropTypes.func.isRequired,
   liked: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired
 };
 
 const defaultProps = {
-  clip: {
-    clip: '',
-    video: ''
-  },
-  parentPlatforms: []
+  game: {
+    clip: {
+      clip: '',
+      video: ''
+    },
+    parentPlatforms: []
+  }
 };
 
 const GameItem = ({
-  id,
-  name,
-  slug,
-  backgroundImage,
-  metacritic,
-  clip,
-  parentPlatforms,
+  game,
   changeRoute,
   playFullVideo,
   toggleLike,
@@ -49,6 +37,18 @@ const GameItem = ({
   isAuthenticated
 }) => {
   const [hover, setHover] = useState(false);
+
+  const {
+    id,
+    name,
+    slug,
+    backgroundImage,
+    metacritic,
+    clip,
+    parentPlatforms
+  } = game;
+  const hasVideo = !!clip && !!clip.clip;
+  const showVideo = hasVideo && hover;
 
   const handleMouseEnter = e => {
     setHover(true);
@@ -60,15 +60,12 @@ const GameItem = ({
 
   const handleToggleLike = e => {
     if (isAuthenticated) {
-      toggleLike(id, liked);
+      toggleLike(id, !liked ? game : null);
     } else {
       changeRoute({ path: '/login', keys: {}, options: {} });
       history.push('/login');
     }
   };
-
-  const hasVideo = !!clip && !!clip.clip;
-  const showVideo = hasVideo && hover;
 
   return (
     <div

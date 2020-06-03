@@ -80,7 +80,7 @@ const GameRendered = ({
               return (
                 <GameItem
                   key={game.id}
-                  {...game}
+                  game={game}
                   changeRoute={changeRoute}
                   playFullVideo={playFullVideo}
                   toggleLike={toggleLike}

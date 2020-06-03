@@ -74,14 +74,14 @@ export const fetchUserLikes = email => {
   return firebase.db.collection('likes').doc(email).get();
 };
 
-export const toggleLike = (id, liked) => (dispatch, getState) => {
+export const toggleLike = (id, game) => (dispatch, getState) => {
   const state = getState();
   const user = getUser(state);
-  const { email } = user.currentUser;
-  const docRef = firebase.db.collection('likes').doc(email);
+  const { uid } = user.currentUser;
+  const docRef = firebase.db.collection('likes').doc(uid);
 
   docRef
-    .set({ [id]: !liked }, { merge: true })
-    .then(() => dispatch(userToggleLike(id, !liked)))
+    .set({ [id]: game }, { merge: true })
+    .then(() => dispatch(userToggleLike(id, game)))
     .catch(console.error);
 };
