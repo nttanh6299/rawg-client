@@ -47,7 +47,8 @@ const Signup = ({ signUp }) => {
     try {
       const error = await signUp(email, username, password);
       if (error) {
-        setFieldError('email', error);
+        const [name, msg] = error.split('-');
+        setFieldError(name, msg);
       }
     } catch (error) {
       console.error(error.code);

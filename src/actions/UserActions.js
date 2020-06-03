@@ -41,17 +41,26 @@ export const login = async (email, password) => {
 };
 
 export const signUp = (email, username, password) => async dispatch => {
-  const user = await firebase.auth.fetchSignInMethodsForEmail(email);
-
-  if (user && user.length > 0) {
-    return 'The email address is already in use by another account.';
+  //email existed
+  const emailExisted = await firebase.auth.fetchSignInMethodsForEmail(email);
+  if (emailExisted && emailExisted.length > 0) {
+    return 'email-The email address is already in use by another account.';
   }
 
+  //username existed
+  const usernameExisted = await firebase.db
+    .collection('users')
+    .doc(username)
+    .get();
+  if (usernameExisted.data()) {
+    return 'username-The username is already in use by another account.';
+  }
+
+  //create user
   const res = await firebase.auth.createUserWithEmailAndPassword(
     email,
     password
   );
-
   await res.user
     .updateProfile({
       displayName: username
