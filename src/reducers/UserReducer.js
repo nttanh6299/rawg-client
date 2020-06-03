@@ -22,8 +22,7 @@ export default function user(state = initialState, { type, payload }) {
       };
     case CLEAR_USER:
       return {
-        ...state,
-        currentUser: null,
+        ...initialState,
         loadedAuth: true
       };
     case UPDATE_USER_USERNAME:
