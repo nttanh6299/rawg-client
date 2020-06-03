@@ -112,6 +112,6 @@ export const USER_TABS = [
   },
   {
     key: 'likes',
-    label: 'Games You Like'
+    label: 'Likes'
   }
 ];
