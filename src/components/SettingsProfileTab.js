@@ -6,6 +6,7 @@ import CustomTextField from './CustomTextField';
 import CustomImageInput from './CustomImageInput';
 import { AiOutlineLoading } from 'react-icons/ai';
 import { FILE_SIZE, SUPPORTED_FORMATS } from '../constants/GlobalConstants';
+import { toast } from 'react-toastify';
 
 const propTypes = {
   currentUser: PropTypes.object
@@ -57,6 +58,9 @@ const SettingsProfileTab = ({ currentUser, updateUser }) => {
         const [name, msg] = error.split('-');
         setFieldError(name, msg);
       }
+      toast.dark('🦄 Update profile successfully!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
     } catch (error) {
       console.error(error.code);
       console.error(error.message);

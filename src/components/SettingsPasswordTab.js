@@ -4,6 +4,7 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import CustomTextField from './CustomTextField';
 import { AiOutlineLoading } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 
 const propTypes = {
   currentUser: PropTypes.object
@@ -50,6 +51,10 @@ const SettingsPasswordTab = ({ changePassword }) => {
       }
 
       resetForm();
+
+      toast.dark('🦄 Change password successfully!', {
+        position: toast.POSITION.TOP_RIGHT
+      });
     } catch (error) {
       console.error(error.code);
       console.error(error.message);

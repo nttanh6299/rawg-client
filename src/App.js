@@ -19,6 +19,8 @@ import {
   WINDOW_SIZE,
   WINDOW_RESIZE_DEBOUNCE
 } from './constants/GlobalConstants';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const paths = [INDEX_PATH, GAMES_PATH, GAME_PATH, USER_PATH];
 
@@ -101,6 +103,7 @@ function App({
 
   return (
     <Router history={history}>
+      <ToastContainer style={{ fontSize: '1.6rem' }} />
       <div className="App">
         <HeaderContainer />
         {renderRoutes(routes)}
