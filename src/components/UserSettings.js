@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import withAuthenticated from './HOCs/withAuthenticated';
 import SettingsProfileTab from './SettingsProfileTab';
+import SettingsPasswordTab from './SettingsPasswordTab';
 import { SETTINGS_TABS } from '../constants/GlobalConstants';
 
 const propTypes = {
@@ -10,7 +11,7 @@ const propTypes = {
 
 const defaultProps = {};
 
-const UserSettings = ({ currentUser, updateUser }) => {
+const UserSettings = ({ currentUser, updateUser, changePassword }) => {
   const [currentTab, setCurrentTab] = useState('');
 
   const renderTab = useMemo(() => {
@@ -22,10 +23,12 @@ const UserSettings = ({ currentUser, updateUser }) => {
             updateUser={updateUser}
           />
         );
+      case 'change-password':
+        return <SettingsPasswordTab changePassword={changePassword} />;
       default:
         return null;
     }
-  }, [currentTab, currentUser, updateUser]);
+  }, [currentTab, currentUser, updateUser, changePassword]);
 
   const handleChangeTab = tab => () => {
     setCurrentTab(tab);

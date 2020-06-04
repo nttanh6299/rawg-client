@@ -1,7 +1,7 @@
 import { UserSettings } from '../components';
 import { connect } from 'react-redux';
 import { getUser } from '../selectors/CommonSelectors';
-import { updateUser } from '../actions/UserActions';
+import { updateUser, changePassword } from '../actions/UserActions';
 
 const mapStateToProps = state => {
   return {
@@ -9,4 +9,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { updateUser })(UserSettings);
+export default connect(mapStateToProps, { updateUser, changePassword })(
+  UserSettings
+);

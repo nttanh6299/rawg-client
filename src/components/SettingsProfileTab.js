@@ -52,7 +52,7 @@ const SettingsProfileTab = ({ currentUser, updateUser }) => {
 
     setSubmitting(true);
     try {
-      const error = await updateUser(displayName, data);
+      const error = await updateUser(data);
       if (error) {
         const [name, msg] = error.split('-');
         setFieldError(name, msg);

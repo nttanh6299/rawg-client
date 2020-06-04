@@ -138,7 +138,7 @@ export const fetchUser = username => async dispatch => {
   }
 };
 
-export const updateUser = (username, user) => async dispatch => {
+export const updateUser = user => async dispatch => {
   const { currentUser } = firebase.auth;
 
   if (!currentUser) {
@@ -190,5 +190,30 @@ export const updateUser = (username, user) => async dispatch => {
     dispatch(updateUserProfileSuccess(propsShouldUpdate));
   } catch (err) {
     throw err;
+  }
+};
+
+export const changePassword = (oldPassword, newPassword) => async dispatch => {
+  const { currentUser } = firebase.auth;
+  if (!currentUser) {
+    return;
+  }
+
+  try {
+    const { email } = currentUser;
+    const credential = firebase.EmailAuthProvider.credential(
+      email,
+      oldPassword
+    );
+    const res = await currentUser.reauthenticateWithCredential(credential);
+
+    if (res) {
+      await currentUser.updatePassword(newPassword);
+    }
+  } catch (err) {
+    if (err.code === 'auth/wrong-password') {
+      return 'oldPassword-Wrong password';
+    }
+    return 'error-Something went wrong';
   }
 };
