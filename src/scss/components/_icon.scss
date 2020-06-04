@@ -34,4 +34,18 @@
     width: 2.5rem;
     height: 2.5rem;
   }
+
+  &--loading {
+    margin-right: 0.6rem;
+    animation: icon-loading 1s infinite linear;
+
+    @keyframes icon-loading {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }

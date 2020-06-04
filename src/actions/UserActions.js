@@ -111,7 +111,7 @@ export const fetchUserLikes = uid => {
   return firebase.db.collection('likes').doc(uid).get();
 };
 
-export const toggleLike = (id, game) => dispatch => {
+export const toggleLike = (id, game, callback) => async dispatch => {
   const { currentUser } = firebase.auth;
 
   if (currentUser) {
@@ -120,8 +120,13 @@ export const toggleLike = (id, game) => dispatch => {
 
     docRef
       .set({ [id]: game }, { merge: true })
-      .then(() => dispatch(userToggleLike(id, game)))
-      .catch(console.error);
+      .then(() => {
+        dispatch(userToggleLike(id, game));
+      })
+      .catch(console.error)
+      .finally(() => {
+        callback(false);
+      });
   }
 };
 
@@ -151,6 +156,15 @@ export const updateUser = user => async dispatch => {
   let propsShouldUpdate = { displayName: username };
 
   try {
+    //username existed
+    const usernameExisted = await firebase.db
+      .collection('users')
+      .doc(username)
+      .get();
+    if (usernameExisted.data()) {
+      return 'username-The username is already in use by another account.';
+    }
+
     if (photo) {
       //upload image to storage
       await storageRef.child(uid).put(photo);
@@ -161,14 +175,14 @@ export const updateUser = user => async dispatch => {
     }
 
     //update auth profile
-    await currentUser.updateProfile({
+    currentUser.updateProfile({
       ...propsShouldUpdate
     });
 
     const collectRef = firebase.db.collection('users').doc(displayName);
     if (displayName === username) {
       //update only
-      await collectRef.update({
+      collectRef.update({
         ...propsShouldUpdate
       });
     } else {
@@ -177,7 +191,7 @@ export const updateUser = user => async dispatch => {
 
       collectRef.delete();
 
-      await firebase.db
+      firebase.db
         .collection('users')
         .doc(username)
         .set({
@@ -193,7 +207,7 @@ export const updateUser = user => async dispatch => {
   }
 };
 
-export const changePassword = (oldPassword, newPassword) => async dispatch => {
+export const changePassword = (oldPassword, newPassword) => async () => {
   const { currentUser } = firebase.auth;
   if (!currentUser) {
     return;

@@ -62,18 +62,4 @@
     text-transform: uppercase;
     padding: 1rem;
   }
-
-  &__loading {
-    margin-right: 1rem;
-    animation: formLoading 1s infinite linear;
-
-    @keyframes formLoading {
-      from {
-        transform: rotate(0deg);
-      }
-      to {
-        transform: rotate(360deg);
-      }
-    }
-  }
 }

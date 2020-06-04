@@ -70,7 +70,9 @@ const Login = ({ login }) => {
               type={isSubmitting ? 'button' : 'submit'}
               className="btn form__submit"
             >
-              {isSubmitting && <AiOutlineLoading className="form__loading" />}
+              {isSubmitting && (
+                <AiOutlineLoading className="icon icon--loading" />
+              )}
               LOGIN
             </button>
           </Form>

@@ -13,7 +13,11 @@ import {
 import Loading from './Loading';
 import { FaPlay } from 'react-icons/fa';
 import CustomLink from './CustomLink';
-import { AiTwotoneLike, AiOutlinePlusCircle } from 'react-icons/ai';
+import {
+  AiTwotoneLike,
+  AiOutlinePlusCircle,
+  AiOutlineLoading
+} from 'react-icons/ai';
 import { history } from '../utils/helpers';
 
 dayjs.extend(localizedFormat);
@@ -48,6 +52,7 @@ const Game = ({
   likes,
   toggleLike
 }) => {
+  const [loadingToggleLike, setLoadingToggleLike] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
@@ -92,7 +97,8 @@ const Game = ({
 
   const handleToggleLike = () => {
     if (isAuthenticated) {
-      toggleLike(id, !liked ? game : null);
+      setLoadingToggleLike(true);
+      toggleLike(id, !liked ? game : null, setLoadingToggleLike);
     } else {
       changeRoute({ path: '/login', keys: {}, options: {} });
       history.push('/login');
@@ -134,12 +140,23 @@ const Game = ({
                 liked ? 'game__action--liked' : ''
               }`}
             >
-              <AiTwotoneLike className="icon" />
-              <span>Like</span>
+              {loadingToggleLike ? (
+                <AiOutlineLoading
+                  className="icon icon--loading"
+                  style={{ margin: 0 }}
+                />
+              ) : (
+                <React.Fragment>
+                  <AiTwotoneLike className="icon" />
+                  <span>Like</span>
+                </React.Fragment>
+              )}
             </li>
             <li className="btn game__action">
               <AiOutlinePlusCircle className="icon" />
-              <span>Collection</span>
+              <span onClick={() => alert('Not supported yet!')}>
+                Collection
+              </span>
             </li>
           </ul>
         </div>

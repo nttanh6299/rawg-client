@@ -4,7 +4,7 @@ import Background from './Background';
 import Video from './Video';
 import CustomLink from './CustomLink';
 import { FaPlay } from 'react-icons/fa';
-import { AiTwotoneLike } from 'react-icons/ai';
+import { AiTwotoneLike, AiOutlineLoading } from 'react-icons/ai';
 import { setMetacriticColor, platformIcon } from '../utils/helpers';
 import { GAME_PATH } from '../constants/urlApi';
 import { history } from '../utils/helpers';
@@ -36,6 +36,7 @@ const GameItem = ({
   liked,
   isAuthenticated
 }) => {
+  const [loadingToggleLike, setLoadingToggleLike] = useState(false);
   const [hover, setHover] = useState(false);
 
   const {
@@ -60,7 +61,8 @@ const GameItem = ({
 
   const handleToggleLike = e => {
     if (isAuthenticated) {
-      toggleLike(id, !liked ? game : null);
+      setLoadingToggleLike(true);
+      toggleLike(id, !liked ? game : null, setLoadingToggleLike);
     } else {
       changeRoute({ path: '/login', keys: {}, options: {} });
       history.push('/login');
@@ -112,10 +114,14 @@ const GameItem = ({
           >
             {name}
           </CustomLink>
-          <AiTwotoneLike
-            onClick={handleToggleLike}
-            className={`icon icon--like ${liked ? 'icon--liked' : ''}`}
-          />
+          {loadingToggleLike ? (
+            <AiOutlineLoading className="icon icon--loading" />
+          ) : (
+            <AiTwotoneLike
+              onClick={handleToggleLike}
+              className={`icon icon--like ${liked ? 'icon--liked' : ''}`}
+            />
+          )}
         </div>
       </div>
     </div>

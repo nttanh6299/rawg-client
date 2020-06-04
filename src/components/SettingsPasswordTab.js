@@ -48,13 +48,12 @@ const SettingsPasswordTab = ({ changePassword }) => {
       if (error) {
         const [name, msg] = error.split('-');
         setFieldError(name, msg);
+      } else {
+        resetForm();
+        toast.dark('🦄 Change password successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+        });
       }
-
-      resetForm();
-
-      toast.dark('🦄 Change password successfully!', {
-        position: toast.POSITION.TOP_RIGHT
-      });
     } catch (error) {
       console.error(error.code);
       console.error(error.message);
@@ -107,7 +106,9 @@ const SettingsPasswordTab = ({ changePassword }) => {
                 type={isSubmitting ? 'button' : 'submit'}
                 className="btn form__submit"
               >
-                {isSubmitting && <AiOutlineLoading className="form__loading" />}
+                {isSubmitting && (
+                  <AiOutlineLoading className="icon icon--loading" />
+                )}
                 SAVE CHANGES
               </button>
             </Form>

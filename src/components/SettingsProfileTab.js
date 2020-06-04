@@ -57,10 +57,11 @@ const SettingsProfileTab = ({ currentUser, updateUser }) => {
       if (error) {
         const [name, msg] = error.split('-');
         setFieldError(name, msg);
+      } else {
+        toast.dark('🦄 Update profile successfully!', {
+          position: toast.POSITION.TOP_RIGHT
+        });
       }
-      toast.dark('🦄 Update profile successfully!', {
-        position: toast.POSITION.TOP_RIGHT
-      });
     } catch (error) {
       console.error(error.code);
       console.error(error.message);
@@ -97,7 +98,9 @@ const SettingsProfileTab = ({ currentUser, updateUser }) => {
                 type={isSubmitting ? 'button' : 'submit'}
                 className="btn form__submit"
               >
-                {isSubmitting && <AiOutlineLoading className="form__loading" />}
+                {isSubmitting && (
+                  <AiOutlineLoading className="icon icon--loading" />
+                )}
                 SAVE CHANGES
               </button>
             </Form>
