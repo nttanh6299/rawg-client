@@ -99,7 +99,7 @@ const User = ({
             className="user__photo"
             style={{ backgroundImage: `url(${photoURL})` }}
           >
-            {displayName[0].toUpperCase()}
+            {!photoURL && displayName[0].toUpperCase()}
           </div>
         </div>
         {isCurrentUser && (

@@ -83,7 +83,7 @@ const Header = ({ changeRoute, logOut, currentUser }) => {
                 className="header__user__avatar"
                 style={{ backgroundImage: `url(${photoURL})` }}
               >
-                {displayName ? displayName[0].toUpperCase() : ''}
+                {!photoURL && displayName ? displayName[0].toUpperCase() : ''}
               </div>
               <span className="header__user__username">{displayName}</span>
             </CustomLink>

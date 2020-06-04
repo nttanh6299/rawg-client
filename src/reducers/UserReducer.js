@@ -3,7 +3,8 @@ import {
   CLEAR_USER,
   UPDATE_USER_USERNAME,
   FETCH_USER_LIKES_SUCCESS,
-  TOGGLE_LIKE
+  TOGGLE_LIKE,
+  UPDATE_USER_PROFILE_SUCCESS
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -39,6 +40,11 @@ export default function user(state = initialState, { type, payload }) {
       return {
         ...state,
         likes: { ...state.likes, [payload.id]: payload.liked }
+      };
+    case UPDATE_USER_PROFILE_SUCCESS:
+      return {
+        ...state,
+        currentUser: { ...state.currentUser, ...payload.props }
       };
     default:
       return state;

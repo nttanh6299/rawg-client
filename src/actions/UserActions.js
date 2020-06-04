@@ -6,7 +6,8 @@ import {
   FETCH_USER_LIKES_SUCCESS,
   TOGGLE_LIKE,
   FETCH_VISITED_USER_SUCCESS,
-  FETCH_VISITED_USER_REQUEST
+  FETCH_VISITED_USER_REQUEST,
+  UPDATE_USER_PROFILE_SUCCESS
 } from '../constants/ActionTypes';
 import { getUser } from '../selectors/CommonSelectors';
 
@@ -34,6 +35,11 @@ const fetchVisitedUserRequest = () => ({ type: FETCH_VISITED_USER_REQUEST });
 const fetchVisitedUserSuccess = user => ({
   type: FETCH_VISITED_USER_SUCCESS,
   payload: { user }
+});
+
+const updateUserProfileSuccess = props => ({
+  type: UPDATE_USER_PROFILE_SUCCESS,
+  payload: { props }
 });
 
 export const login = async (email, password) => {
@@ -133,24 +139,55 @@ export const fetchUser = username => async dispatch => {
 
 export const updateUser = (username, user) => async dispatch => {
   const { currentUser } = firebase.auth;
+
+  if (!currentUser) {
+    return;
+  }
+
   const storageRef = firebase.storage.ref();
   const { photo, username } = user;
-  if (currentUser) {
-    const { uid } = currentUser;
+  const { uid, displayName } = currentUser;
+  let propsShouldUpdate = { displayName: username };
 
-    try {
+  try {
+    if (photo) {
       //upload image to storage
       await storageRef.child(uid).put(photo);
       //get image url
       const url = await storageRef.child(uid).getDownloadURL();
 
-      //update auth profile
-      await currentUser.updateProfile({
-        photoURL: url,
-        displayName: username
-      });
-    } catch (err) {
-      throw err;
+      propsShouldUpdate = { ...propsShouldUpdate, photoURL: url };
     }
+
+    //update auth profile
+    await currentUser.updateProfile({
+      ...propsShouldUpdate
+    });
+
+    const collectRef = firebase.db.collection('users').doc(displayName);
+    if (displayName === username) {
+      //update only
+      await collectRef.update({
+        ...propsShouldUpdate
+      });
+    } else {
+      //delete current user and add new user with new key
+      const previousUser = await collectRef.get();
+
+      collectRef.delete();
+
+      await firebase.db
+        .collection('users')
+        .doc(username)
+        .set({
+          ...previousUser.data(),
+          ...propsShouldUpdate
+        });
+    }
+
+    //update reducer
+    dispatch(updateUserProfileSuccess(propsShouldUpdate));
+  } catch (err) {
+    throw err;
   }
 };

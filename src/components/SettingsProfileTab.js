@@ -45,7 +45,6 @@ const SettingsProfileTab = ({ currentUser, updateUser }) => {
   const handleSubmit = async (data, actions) => {
     const { setSubmitting, setFieldError } = actions;
     const { photo, username } = data;
-    let propsShouldUpdate = {};
 
     if (!photo && displayName === username) {
       return;

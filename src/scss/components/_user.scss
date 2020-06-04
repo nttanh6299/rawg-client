@@ -31,6 +31,8 @@
   }
 
   &__photo {
+    background-size: cover;
+    background-position: center center;
     background-color: #fff;
     width: 12rem;
     height: 12rem;
