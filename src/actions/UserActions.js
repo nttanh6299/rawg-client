@@ -157,12 +157,14 @@ export const updateUser = user => async dispatch => {
 
   try {
     //username existed
-    const usernameExisted = await firebase.db
-      .collection('users')
-      .doc(username)
-      .get();
-    if (usernameExisted.data()) {
-      return 'username-The username is already in use by another account.';
+    if (displayName !== username) {
+      const usernameExisted = await firebase.db
+        .collection('users')
+        .doc(username)
+        .get();
+      if (usernameExisted.data()) {
+        return 'username-The username is already in use by another account.';
+      }
     }
 
     if (photo) {
