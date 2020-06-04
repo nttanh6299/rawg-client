@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback } from 'react';
 import { connect } from 'react-redux';
-import { Router, Switch } from 'react-router-dom';
-import { history } from './utils/helpers';
+import { HashRouter, Switch } from 'react-router-dom';
 import { routes } from './routes';
 import { PublicRoute } from './layouts';
 import { initRouter } from './actions/RouterActions';
@@ -102,14 +101,14 @@ function App({
   }, []);
 
   return (
-    <Router history={history}>
+    <HashRouter basename="/">
       <ToastContainer style={{ fontSize: '1.6rem' }} />
       <div className="App">
         <HeaderContainer />
         {renderRoutes(routes)}
         <FullVideo onClose={closeFullVideo} videoId={videoId} />
       </div>
-    </Router>
+    </HashRouter>
   );
 }
 

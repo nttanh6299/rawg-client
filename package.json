@@ -1,6 +1,8 @@
 {
   "name": "rawg-client",
   "version": "0.1.0",
+  "homepage": "https://nttanh6299.github.io/rawg-client",
+  "main": "index.js",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -11,6 +13,7 @@
     "dayjs": "^1.8.27",
     "firebase": "^7.14.5",
     "formik": "^2.1.4",
+    "gh-pages": "^3.0.0",
     "node-sass": "^4.14.0",
     "path-to-regexp": "^6.1.0",
     "react": "^16.13.1",
@@ -30,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

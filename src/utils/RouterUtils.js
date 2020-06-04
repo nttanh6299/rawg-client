@@ -31,7 +31,6 @@ const parseRouteKeys = (pathname, result) => {
 
 const parseRouteOptions = search => {
   return search
-    .slice(1)
     .split('&')
     .map(pair => pair.split('='))
     .filter(keyValuePair => keyValuePair.length === 2 && keyValuePair[0] !== '')
