@@ -130,3 +130,27 @@ export const fetchUser = username => async dispatch => {
     console.error(err);
   }
 };
+
+export const updateUser = (username, user) => async dispatch => {
+  const { currentUser } = firebase.auth;
+  const storageRef = firebase.storage.ref();
+  const { photo, username } = user;
+  if (currentUser) {
+    const { uid } = currentUser;
+
+    try {
+      //upload image to storage
+      await storageRef.child(uid).put(photo);
+      //get image url
+      const url = await storageRef.child(uid).getDownloadURL();
+
+      //update auth profile
+      await currentUser.updateProfile({
+        photoURL: url,
+        displayName: username
+      });
+    } catch (err) {
+      throw err;
+    }
+  }
+};

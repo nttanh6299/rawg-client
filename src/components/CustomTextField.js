@@ -1,18 +1,27 @@
 import React from 'react';
-import { useField } from 'formik';
+import { useField, Field } from 'formik';
 
-const CustomTextField = ({ type, placeholder, className, ...props }) => {
+const CustomTextField = ({
+  as,
+  type,
+  placeholder,
+  className,
+  style,
+  ...props
+}) => {
   const [field, meta] = useField(props);
   const errorText = meta.error && meta.touched ? meta.error : '';
 
   return (
     <div>
-      <input
+      <Field
+        as={as}
         className={className}
-        style={{ border: `${errorText ? '1px solid #f00' : ''}` }}
+        style={{ border: `${errorText ? '1px solid #f00' : ''}`, ...style }}
         placeholder={placeholder}
         type={type}
         {...field}
+        {...props}
       />
       {errorText && (
         <div

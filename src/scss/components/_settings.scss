@@ -1,0 +1,44 @@
+.settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @include mq($tablet) {
+    margin: 3rem 0;
+    align-items: center;
+  }
+
+  &__tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+
+  &__tab {
+    padding: 0.6rem 0;
+    font-size: 2rem;
+    color: var(--color-grey-dark-3);
+    border-bottom: 2px solid transparent;
+
+    & + & {
+      margin-left: 1.4rem;
+    }
+
+    &:hover {
+      border-bottom: 2px solid #fff;
+      cursor: pointer;
+    }
+
+    &--active {
+      color: #fff;
+      border-bottom: 2px solid #fff;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    margin-top: 2rem;
+  }
+}

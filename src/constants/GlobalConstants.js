@@ -115,3 +115,17 @@ export const USER_TABS = [
     label: 'Likes'
   }
 ];
+
+export const SETTINGS_TABS = [
+  {
+    key: '',
+    label: 'Profile'
+  },
+  {
+    key: 'change-password',
+    label: 'Change password'
+  }
+];
+
+export const FILE_SIZE = 160 * 1024;
+export const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png'];
