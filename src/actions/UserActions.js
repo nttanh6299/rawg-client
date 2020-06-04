@@ -9,7 +9,6 @@ import {
   FETCH_VISITED_USER_REQUEST,
   UPDATE_USER_PROFILE_SUCCESS
 } from '../constants/ActionTypes';
-import { getUser } from '../selectors/CommonSelectors';
 
 const loginSuccess = user => ({ type: LOGIN_SUCCESS, payload: { user } });
 
@@ -112,16 +111,18 @@ export const fetchUserLikes = uid => {
   return firebase.db.collection('likes').doc(uid).get();
 };
 
-export const toggleLike = (id, game) => (dispatch, getState) => {
-  const state = getState();
-  const user = getUser(state);
-  const { uid } = user.currentUser;
-  const docRef = firebase.db.collection('likes').doc(uid);
+export const toggleLike = (id, game) => dispatch => {
+  const { currentUser } = firebase.auth;
 
-  docRef
-    .set({ [id]: game }, { merge: true })
-    .then(() => dispatch(userToggleLike(id, game)))
-    .catch(console.error);
+  if (currentUser) {
+    const { uid } = currentUser;
+    const docRef = firebase.db.collection('likes').doc(uid);
+
+    docRef
+      .set({ [id]: game }, { merge: true })
+      .then(() => dispatch(userToggleLike(id, game)))
+      .catch(console.error);
+  }
 };
 
 export const fetchUser = username => async dispatch => {
