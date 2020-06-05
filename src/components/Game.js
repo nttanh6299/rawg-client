@@ -19,6 +19,7 @@ import {
   AiOutlineLoading
 } from 'react-icons/ai';
 import { history } from '../utils/helpers';
+import { preventClick } from '../utils/helpers';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(relativeTime);
@@ -135,7 +136,7 @@ const Game = ({
           )}
           <ul className="game__actions">
             <li
-              onClick={handleToggleLike}
+              onClick={loadingToggleLike ? preventClick : handleToggleLike}
               className={`btn game__action game__action--like ${
                 liked ? 'game__action--liked' : ''
               }`}
