@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/rawg-client/precache-manifest.4ee6fa6e7eb2f518abb4c2292b81f593.js"
+  "/rawg-client/precache-manifest.1b1ffbab89c1b2f7af6af192a57e9d30.js"
 );
 
 self.addEventListener('message', (event) => {

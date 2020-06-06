@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "066d1fa594ccad04959280111d4dff05",
+    "revision": "97a108980a9b796333d776d9ba80c8ad",
     "url": "/rawg-client/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rawg-client/static/css/3.a40b670a.chunk.css"
   },
   {
-    "revision": "839b2f68322515f8a0b1",
-    "url": "/rawg-client/static/css/main.4a2a6d49.chunk.css"
+    "revision": "ebf4cdfd1a06b572a350",
+    "url": "/rawg-client/static/css/main.6def189f.chunk.css"
   },
   {
     "revision": "f1d410f709ae5be2c709",
@@ -56,8 +56,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/rawg-client/static/js/9.2370ffe2.chunk.js"
   },
   {
-    "revision": "839b2f68322515f8a0b1",
-    "url": "/rawg-client/static/js/main.e7b37a2b.chunk.js"
+    "revision": "ebf4cdfd1a06b572a350",
+    "url": "/rawg-client/static/js/main.4cc911e9.chunk.js"
   },
   {
     "revision": "448e6c233fe57d5cf8eb",
