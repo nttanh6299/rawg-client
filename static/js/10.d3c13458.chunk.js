@@ -1,0 +1,2 @@
+(this["webpackJsonprawg-client"]=this["webpackJsonprawg-client"]||[]).push([[10],{167:function(t,e,c){"use strict";c.r(e);var a=c(2),n=c(52),s=c(53),i=c(98),r=c(74);e.default=Object(s.b)((function(t){return Object(a.a)({},Object(i.h)(t))}),{updateUser:r.i,changePassword:r.b})(n.i)}}]);
+//# sourceMappingURL=10.d3c13458.chunk.js.map
