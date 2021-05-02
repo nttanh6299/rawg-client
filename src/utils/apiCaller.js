@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_URL } from '../constants/urlApi';
+import { API_URL, PUBLIC_API_KEY } from '../constants/urlApi';
 const camelize = require('camelize');
 
 const instanceNext = axios.create({
@@ -8,7 +8,14 @@ const instanceNext = axios.create({
 });
 
 instanceNext.interceptors.request.use(
-  config => Promise.resolve(config),
+  config => {
+    let newUrl = `${config.url}&key=${PUBLIC_API_KEY}`;
+    if (!config.url.includes('?')) {
+      newUrl = newUrl.replace('&', '?');
+    }
+    config.url = newUrl;
+    return Promise.resolve(config);
+  },
   error => Promise.reject(error)
 );
 

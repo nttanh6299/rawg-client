@@ -12,3 +12,5 @@ export const INDEX_PATH = '/';
 export const GAMES_PATH = '/games';
 export const GAME_PATH = '/games/:slug';
 export const USER_PATH = '/@:username';
+
+export const PUBLIC_API_KEY = '88875ce36a0e44c7836738cb513a6b43';
